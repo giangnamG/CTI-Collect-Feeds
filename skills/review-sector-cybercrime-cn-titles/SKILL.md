@@ -66,12 +66,12 @@ python scripts/prepare_review_folder.py --input-dir "<folder>"
 
 If `--output-dir` is omitted, the script creates:
 
-- `reviews\review-cn-sososo-search\<input-folder-name>\manifest.json`
+- `skills\review-cn-sososo-search\reviews\review-cn-sososo-search\<input-folder-name>\manifest.json`
 - normalized input files under `normalized/`
 - empty working folders such as `drafts/` and `reviewed/`
 
-The manifest is the system of record for the run. When no custom output path is provided, the whole review result is stored under `reviews\review-cn-sososo-search\<input-folder-name>`.
-The workflow also writes execution logs to `logs\review-cn-sososo-search_logs\`.
+The manifest is the system of record for the run. When no custom output path is provided, the whole review result is stored under `skills\review-cn-sososo-search\reviews\review-cn-sososo-search\<input-folder-name>`.
+The workflow also writes execution logs to `skills\review-cn-sososo-search\logs\review-cn-sososo-search_logs\`.
 
 ### 2. Review each normalized file semantically
 
@@ -159,6 +159,7 @@ Each run directory contains:
 - `accepted_candidates.json`
 - `rejected_candidates.json`
 - `summary.json`
-- logs under `logs\review-cn-sososo-search_logs\`
+- logs under `skills\review-cn-sososo-search\logs\review-cn-sososo-search_logs\`
 
 Return the artifact paths, summary counts, and relevant log file paths once the run is complete.
+

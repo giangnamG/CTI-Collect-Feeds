@@ -104,16 +104,20 @@ def normalize_input_file(input_path: Path) -> dict[str, Any]:
     }
 
 
-def workspace_root() -> Path:
-    return Path(__file__).resolve().parents[2]
+def repo_root() -> Path:
+    return Path(__file__).resolve().parents[3]
+
+
+def state_root() -> Path:
+    return repo_root() / "skills" / "review-cn-sososo-search"
 
 
 def default_run_dir(input_dir: Path) -> Path:
-    return workspace_root() / "reviews" / "review-cn-sososo-search" / input_dir.name
+    return state_root() / "reviews" / "review-cn-sososo-search" / input_dir.name
 
 
 def prepare_review_directory(input_dir: Path, output_dir: Path | None = None) -> dict[str, Any]:
-    root = workspace_root()
+    root = state_root()
     logger = ReviewLogger(root)
 
     resolved_input_dir = input_dir.expanduser().resolve()
@@ -207,3 +211,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+

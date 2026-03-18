@@ -45,8 +45,9 @@ def main() -> None:
     prepare_script = scripts_dir / "prepare_review_folder.py"
     persist_script = scripts_dir / "persist_review_folder.py"
 
-    workspace_root = scripts_dir.parent.parent
-    log_dir = workspace_root / "logs" / "review-cn-sososo-search_logs"
+    repo_root = scripts_dir.parents[2]
+    state_root = repo_root / "skills" / "review-cn-sososo-search"
+    log_dir = state_root / "logs" / "review-cn-sososo-search_logs"
     before_logs = list_log_files(log_dir)
 
     tmp_root = scripts_dir.parent / "_tmp_tests"
@@ -94,7 +95,7 @@ def main() -> None:
     if prepare_log_file not in after_prepare_logs or len(after_prepare_logs) <= len(before_logs):
         raise SystemExit("Expected a new prepare log file in logs/review-cn-sososo-search_logs")
 
-    expected_run_dir = (workspace_root / "reviews" / "review-cn-sososo-search" / input_dir.name).resolve()
+    expected_run_dir = (state_root / "reviews" / "review-cn-sososo-search" / input_dir.name).resolve()
     run_dir = Path(manifest["run_dir"]).resolve()
     if run_dir != expected_run_dir:
         raise SystemExit(f"Unexpected run_dir: {run_dir} != {expected_run_dir}")
@@ -255,3 +256,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

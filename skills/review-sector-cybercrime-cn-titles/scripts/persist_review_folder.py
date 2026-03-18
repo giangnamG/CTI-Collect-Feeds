@@ -45,8 +45,12 @@ def resolve_manifest_relative_path(manifest_path: Path, relative_path: str) -> P
     return (manifest_path.parent / relative_path).resolve()
 
 
-def workspace_root() -> Path:
-    return Path(__file__).resolve().parents[2]
+def repo_root() -> Path:
+    return Path(__file__).resolve().parents[3]
+
+
+def state_root() -> Path:
+    return repo_root() / "skills" / "review-cn-sososo-search"
 
 
 def validate_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
@@ -195,7 +199,7 @@ def persist_review_directory(
     review_dir: Path | None = None,
     output_dir: Path | None = None,
 ) -> dict[str, Any]:
-    root = workspace_root()
+    root = state_root()
     logger = ReviewLogger(root)
 
     resolved_manifest_path = manifest_path.expanduser().resolve()
@@ -305,3 +309,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
