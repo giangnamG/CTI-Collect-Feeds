@@ -215,7 +215,7 @@ class ConsoleColorFormatter(logging.Formatter):
 
 class SososoLogger:
     def __init__(self, output_dir: Path) -> None:
-        self.log_dir = output_dir / "logs" / "sososo_logs"
+        self.log_dir = output_dir / "logs" / "sososo_search_logs"
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.log_file = self.log_dir / f"sososo-{datetime.now():%y%m%d-%H%M%S}-{uuid4().hex[:6]}.log"
         self._step_counter = 0
