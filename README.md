@@ -38,13 +38,35 @@ python sososo.py --query "bank fake" --max-page 10 --batch 30
 
 ## Skill review title tiếng Trung
 
-Repo hiện có thêm skill `review-sector-cybercrime-cn-titles` tại `skills/review-cn-sososo-search/review-sector-cybercrime-cn-titles`.
+Repo hiện có skill `review-sector-cybercrime-cn-titles` tại `skills/review-sector-cybercrime-cn-titles`.
 
-- Trigger: `$review-sector-cybercrime-cn-titles <folder>`
+- Trigger: `$review-sector-cybercrime-cn-titles <batch-token|folder-path>`
+- `batch-token|folder-path` là tên thư mục hoặc đường dẫn tới thư mục chứa kết quả batch JSON do `sososo.py` tạo ra sau khi crawl xong, ví dụ `batches/260318-233535/`
+- Nếu truyền bare token như `260318-233535`, skill sẽ tự resolve sang `batches/<token>`
 - Mục đích: review semantic các title tiếng Trung trong các file `0001.json -> xxxx.json` và đánh dấu các title liên quan tới cybercrime trong nhóm `banking`, `securities`, `financial`, `government`
-- Không dùng regex để quyết định `accept/reject`; phần đánh giá do Codex suy luận
-- Thư mục kết quả mặc định: `skills/review-cn-sososo-search/reviews/review-cn-sososo-search/<tên-folder-đầu-vào>`
-- Thư mục log mặc định: `skills/review-cn-sososo-search/logs/review-cn-sososo-search_logs/`
+- Không dùng regex để quyết định `accept/reject`; phần đánh giá do Codex suy luận theo ngữ nghĩa
+- Thư mục kết quả mặc định: `reviews/review-cn-sososo-search/<tên-folder-đầu-vào>`
+- Thư mục log mặc định: `logs/review-cn-sososo-search_logs/`
+- Workspace root mặc định là thư mục đang làm việc hoặc thư mục cha gần nhất có `batches/`; có thể override bằng env var `REVIEW_SECTOR_CYBERCRIME_CN_ROOT`
+
+Workflow ngắn:
+
+```powershell
+python skills/review-sector-cybercrime-cn-titles/scripts/prepare_review_folder.py --input-dir "260318-233535"
+python skills/review-sector-cybercrime-cn-titles/scripts/show_normalized_batch.py --manifest "reviews/review-cn-sososo-search/260318-233535/manifest.json" --list-files
+python skills/review-sector-cybercrime-cn-titles/scripts/show_normalized_batch.py --manifest "reviews/review-cn-sososo-search/260318-233535/manifest.json" --source-file "0001.json"
+python skills/review-sector-cybercrime-cn-titles/scripts/persist_review_folder.py --manifest "reviews/review-cn-sososo-search/260318-233535/manifest.json"
+```
+
+Giải thích workflow:
+
+- `prepare_review_folder.py`: quét thư mục input, chỉ lấy các file JSON được đánh số như `0001.json`, normalize dữ liệu đầu vào, tạo `manifest.json`, và dựng sẵn các thư mục làm việc như `normalized/`, `drafts/`, `reviewed/`.
+- `show_normalized_batch.py --list-files`: đọc `manifest.json` và liệt kê những file nguồn nào đã được chuẩn hóa, mỗi file có bao nhiêu item, giúp biết chính xác batch nào cần review.
+- `show_normalized_batch.py --source-file "0001.json"`: mở một normalized batch cụ thể để reviewer xem đúng dữ liệu đã được chuẩn hóa trước khi đưa ra quyết định semantic.
+- Bước review semantic: Codex hoặc reviewer phải tạo `drafts/<file>.review.json` cho từng file, giữ nguyên `title`, `link`, `source_file`, `item_index`, rồi bổ sung `decision`, `reason`, `sector_tags`, `crime_signals`, `priority`.
+- `persist_review_folder.py`: validate toàn bộ draft review, khóa contract đầu ra, rồi tổng hợp sang `reviewed/`, `accepted_candidates.json`, `rejected_candidates.json`, `summary.json`.
+- `run_regression.py`: chỉ dùng khi sửa script của skill; script này kiểm tra end-to-end flow `prepare -> inspect -> persist` để tránh làm hỏng workflow review hiện có.
+- Khi gọi trực tiếp bằng skill `$review-sector-cybercrime-cn-titles`, Codex sẽ tự chạy toàn bộ flow này nếu input hợp lệ, nên người dùng thường không cần tự gõ từng lệnh tay.
 
 Artifacts chính của skill:
 
@@ -59,3 +81,6 @@ Artifacts chính của skill:
 ## Ghi chú
 
 Script cần `telegram-mcp` đang chạy và Python environment có package `mcp`.
+
+
+
