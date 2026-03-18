@@ -8,5 +8,8 @@ logs/*
 !logs/sososo_search_logs/
 logs/sososo_search_logs/*
 !logs/sososo_search_logs/.keep
+!logs/review-cn-sososo-search_logs/
+logs/review-cn-sososo-search_logs/*
+!logs/review-cn-sososo-search_logs/.keep
 
 .vscode/
