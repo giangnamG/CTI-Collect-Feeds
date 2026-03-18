@@ -13,3 +13,11 @@ logs/review-cn-sososo-search_logs/*
 !logs/review-cn-sososo-search_logs/.keep
 
 .vscode/
+
+skills/review-sector-cybercrime-cn-titles/_tmp_tests/
+test/
+tmp/
+
+reviews/review-cn-sososo-search/*
+!reviews/review-cn-sososo-search/.keep
+
