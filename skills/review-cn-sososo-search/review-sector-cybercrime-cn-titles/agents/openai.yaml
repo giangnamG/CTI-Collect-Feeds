@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review Sector Cybercrime CN Titles"
+  short_description: "Chinese title review for sector cybercrime."
+  default_prompt: "Use $review-sector-cybercrime-cn-titles to review every numbered JSON file inside <folder>, reason over Chinese-language titles semantically, and persist the review artifacts for banking, securities, financial, and government cybercrime triage."
+policy:
+  allow_implicit_invocation: false
