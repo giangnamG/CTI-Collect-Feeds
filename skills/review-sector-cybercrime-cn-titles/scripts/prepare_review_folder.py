@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,6 +15,7 @@ NUMBERED_JSON_PATTERN = re.compile(r"^\d{4,}\.json$")
 ROOT_LIST_KEYS = ("items", "results", "data", "titles")
 TITLE_KEYS = ("title", "name", "text", "label")
 LINK_KEYS = ("link", "url", "href")
+WORKSPACE_ROOT_ENV = "REVIEW_SECTOR_CYBERCRIME_CN_ROOT"
 
 
 def load_json(path: Path) -> Any:
@@ -104,28 +106,62 @@ def normalize_input_file(input_path: Path) -> dict[str, Any]:
     }
 
 
-def repo_root() -> Path:
-    return Path(__file__).resolve().parents[3]
+def workspace_root() -> Path:
+    override = os.environ.get(WORKSPACE_ROOT_ENV)
+    if override:
+        return Path(override).expanduser().resolve()
+
+    current = Path.cwd().resolve()
+    for candidate in (current, *current.parents):
+        if (candidate / "batches").exists():
+            return candidate
+    return current
 
 
-def state_root() -> Path:
-    return repo_root() / "skills" / "review-cn-sososo-search"
+def default_batches_root() -> Path:
+    return workspace_root() / "batches"
+
+
+def resolve_input_dir(input_dir: Path) -> Path:
+    requested = input_dir.expanduser()
+    root = workspace_root()
+
+    if requested.is_absolute():
+        candidates = [requested]
+    elif len(requested.parts) == 1:
+        candidates = [
+            default_batches_root() / requested,
+            Path.cwd() / requested,
+            root / requested,
+        ]
+    else:
+        candidates = [
+            Path.cwd() / requested,
+            root / requested,
+        ]
+
+    for candidate in candidates:
+        if candidate.exists() and candidate.is_dir():
+            return candidate.resolve()
+
+    return candidates[0].resolve()
 
 
 def default_run_dir(input_dir: Path) -> Path:
-    return state_root() / "reviews" / "review-cn-sososo-search" / input_dir.name
+    return workspace_root() / "reviews" / "review-cn-sososo-search" / input_dir.name
 
 
 def prepare_review_directory(input_dir: Path, output_dir: Path | None = None) -> dict[str, Any]:
-    root = state_root()
+    root = workspace_root()
     logger = ReviewLogger(root)
 
-    resolved_input_dir = input_dir.expanduser().resolve()
+    resolved_input_dir = resolve_input_dir(input_dir)
     resolved_output_dir = output_dir.expanduser().resolve() if output_dir is not None else default_run_dir(resolved_input_dir)
     logger.step(
         "Initializing review folder preparation "
-        f"| skill=review-sector-cybercrime-cn-titles | input_dir={resolved_input_dir} "
-        f"| output_dir={resolved_output_dir} | log_dir={logger.log_dir} | log_file={logger.log_file}"
+        f"| skill=review-sector-cybercrime-cn-titles | workspace_root={root} | requested_input={input_dir} "
+        f"| input_dir={resolved_input_dir} | output_dir={resolved_output_dir} "
+        f"| log_dir={logger.log_dir} | log_file={logger.log_file}"
     )
 
     if not resolved_input_dir.exists() or not resolved_input_dir.is_dir():
@@ -172,6 +208,8 @@ def prepare_review_directory(input_dir: Path, output_dir: Path | None = None) ->
     manifest = {
         "skill": "review-sector-cybercrime-cn-titles",
         "created_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "workspace_root": str(root),
+        "requested_input": str(input_dir),
         "input_dir": str(resolved_input_dir),
         "run_dir": str(resolved_output_dir),
         "log_dir": str(logger.log_dir),
@@ -192,7 +230,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Discover numbered JSON files and prepare a review run directory."
     )
-    parser.add_argument("--input-dir", required=True, help="Folder containing files such as 0001.json.")
+    parser.add_argument(
+        "--input-dir",
+        required=True,
+        help="Folder path or bare batch token. Bare tokens resolve under <workspace>/batches/<token>.",
+    )
     parser.add_argument(
         "--output-dir",
         help="Optional run directory. Defaults to reviews/review-cn-sososo-search/<input-folder-name>.",
@@ -211,5 +253,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

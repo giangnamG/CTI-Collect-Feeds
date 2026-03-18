@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -10,6 +11,7 @@ from review_logging import ReviewLogger
 
 VALID_DECISIONS = {"accept", "reject"}
 VALID_PRIORITIES = {"low", "medium", "high"}
+WORKSPACE_ROOT_ENV = "REVIEW_SECTOR_CYBERCRIME_CN_ROOT"
 
 
 def load_json(path: Path) -> Any:
@@ -45,12 +47,16 @@ def resolve_manifest_relative_path(manifest_path: Path, relative_path: str) -> P
     return (manifest_path.parent / relative_path).resolve()
 
 
-def repo_root() -> Path:
-    return Path(__file__).resolve().parents[3]
+def workspace_root() -> Path:
+    override = os.environ.get(WORKSPACE_ROOT_ENV)
+    if override:
+        return Path(override).expanduser().resolve()
 
-
-def state_root() -> Path:
-    return repo_root() / "skills" / "review-cn-sososo-search"
+    current = Path.cwd().resolve()
+    for candidate in (current, *current.parents):
+        if (candidate / "batches").exists():
+            return candidate
+    return current
 
 
 def validate_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
@@ -199,7 +205,7 @@ def persist_review_directory(
     review_dir: Path | None = None,
     output_dir: Path | None = None,
 ) -> dict[str, Any]:
-    root = state_root()
+    root = workspace_root()
     logger = ReviewLogger(root)
 
     resolved_manifest_path = manifest_path.expanduser().resolve()
@@ -211,7 +217,7 @@ def persist_review_directory(
     reviewed_dir.mkdir(parents=True, exist_ok=True)
     logger.step(
         "Initializing review persistence "
-        f"| manifest={resolved_manifest_path} | output_dir={resolved_output_dir} "
+        f"| workspace_root={root} | manifest={resolved_manifest_path} | output_dir={resolved_output_dir} "
         f"| log_dir={logger.log_dir} | log_file={logger.log_file}"
     )
 
@@ -309,5 +315,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

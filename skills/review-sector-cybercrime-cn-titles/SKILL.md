@@ -1,6 +1,6 @@
 ---
 name: review-sector-cybercrime-cn-titles
-description: Review one folder that contains numbered JSON files such as `0001.json` through `xxxx.json` and decide, title by title, which Chinese-language entries semantically indicate cybercrime activity targeting banking, securities, financial, or government sectors. Use when the user invokes `$review-sector-cybercrime-cn-titles` with a folder path and wants the whole review flow to run automatically without extra prompting. Trigger only for folder-based Chinese JSON title review; do not use this skill for Telegram collection, regex-only filtering, multilingual generic triage, or full CTI extraction.
+description: Review one folder that contains numbered JSON files such as `0001.json` through `xxxx.json` and decide, title by title, which Chinese-language entries semantically indicate cybercrime activity targeting banking, securities, financial, or government sectors. Use when the user invokes `$review-sector-cybercrime-cn-titles` with a batch folder token like `260318-233535` or an explicit folder path and wants the whole review flow to run automatically without extra prompting. Trigger only for folder-based Chinese JSON title review; do not use this skill for Telegram collection, regex-only filtering, multilingual generic triage, or full CTI extraction.
 ---
 
 # Review Sector Cybercrime CN Titles
@@ -8,13 +8,21 @@ description: Review one folder that contains numbered JSON files such as `0001.j
 ## Overview
 
 Act as a folder-level semantic review layer for numbered JSON files whose titles are primarily in Chinese.
-Codex is the reviewer. The bundled scripts only discover files, normalize inputs, validate the review contract, persist artifacts, and log execution details.
+Codex is the reviewer. The bundled scripts only discover files, normalize inputs, inspect prepared batches, validate the review contract, persist artifacts, and log execution details.
 
 ## Invocation Contract
 
-If the user invokes `$review-sector-cybercrime-cn-titles` and provides one folder path, treat that path as the input directory immediately.
-Do not ask follow-up questions if the folder exists and contains numbered JSON files.
-Ask only when the folder does not exist, the files are unreadable, or the JSON shape is irrecoverably invalid.
+If the user invokes `$review-sector-cybercrime-cn-titles` and provides one value, treat it as the input selector immediately.
+If the value is a bare token such as `260318-233535`, resolve it by default to `<workspace>\batches\260318-233535`.
+If the value is an existing absolute or relative folder path, use that folder directly.
+Do not ask follow-up questions if the resolved folder exists and contains numbered JSON files.
+Ask only when the resolved folder does not exist, the files are unreadable, or the JSON shape is irrecoverably invalid.
+
+## Workspace Root
+
+The artifact root is the active project workspace, not the installed skill directory.
+By default the scripts walk upward from the current working directory until they find a folder that contains `batches/`.
+If needed, override the workspace root with the environment variable `REVIEW_SECTOR_CYBERCRIME_CN_ROOT`.
 
 ## Language Scope
 
@@ -31,7 +39,8 @@ Prefer concise Chinese reasons in `reason` unless the caller explicitly asks for
 - Never skip files that match the numbered-file contract.
 - Never reorder items inside a file.
 - Never rewrite `title`, `link`, `source_file`, or `item_index` values in review outputs.
-- Use the helper scripts only for discovery, normalization, validation, artifact persistence, and workflow logging.
+- Use the helper scripts only for discovery, normalization, prepared-batch inspection, validation, artifact persistence, and workflow logging.
+- Never use ad-hoc `python -c`, shell one-liners, or quoting-sensitive inline scripts to inspect normalized inputs when `show_normalized_batch.py` can read them directly.
 
 ## Accepted Input Shapes
 
@@ -61,22 +70,40 @@ Optional link fields:
 Run:
 
 ```powershell
-python scripts/prepare_review_folder.py --input-dir "<folder>"
+python scripts/prepare_review_folder.py --input-dir "260318-233535"
 ```
+
+You may also pass an explicit folder path, but a bare token is resolved under `<workspace>\batches\<token>` by default.
 
 If `--output-dir` is omitted, the script creates:
 
-- `skills\review-cn-sososo-search\reviews\review-cn-sososo-search\<input-folder-name>\manifest.json`
+- `reviews\review-cn-sososo-search\<input-folder-name>\manifest.json`
 - normalized input files under `normalized/`
 - empty working folders such as `drafts/` and `reviewed/`
 
-The manifest is the system of record for the run. When no custom output path is provided, the whole review result is stored under `skills\review-cn-sososo-search\reviews\review-cn-sososo-search\<input-folder-name>`.
-The workflow also writes execution logs to `skills\review-cn-sososo-search\logs\review-cn-sososo-search_logs\`.
+The manifest is the system of record for the run. When no custom output path is provided, the whole review result is stored under `reviews\review-cn-sososo-search\<input-folder-name>`.
+The workflow also writes execution logs to `logs\review-cn-sososo-search_logs\`.
 
-### 2. Review each normalized file semantically
+### 2. Inspect normalized files safely
 
 Read `manifest.json`.
-Then review every normalized input file listed in `manifest.files`.
+List the prepared files with:
+
+```powershell
+python scripts/show_normalized_batch.py --manifest "<run-dir>\manifest.json" --list-files
+```
+
+Then inspect each normalized file with:
+
+```powershell
+python scripts/show_normalized_batch.py --manifest "<run-dir>\manifest.json" --source-file "0001.json"
+```
+
+Use the helper script instead of ad-hoc shell snippets so the review flow stays stable on PowerShell.
+
+### 3. Review each normalized file semantically
+
+Review every normalized input file listed in `manifest.files`.
 Make decisions from Chinese meaning, intent, implied criminal workflow, victim sector, and monetization pattern.
 Do not reduce the task to literal word matching.
 
@@ -111,7 +138,7 @@ Rules:
 - Use `priority = low` for rejects.
 - Use `priority = medium` or `high` for accepts.
 
-### 3. Persist the reviewed outputs
+### 4. Persist the reviewed outputs
 
 Run:
 
@@ -129,7 +156,7 @@ The persistence script validates the review drafts and writes:
 The script does not decide `accept` or `reject`.
 It only locks the contract, aggregates artifacts, and logs progress.
 
-### 4. Run regression checks after script changes
+### 5. Run regression checks after script changes
 
 Run:
 
@@ -137,7 +164,7 @@ Run:
 python scripts/run_regression.py
 ```
 
-Use this whenever `prepare_review_folder.py`, `persist_review_folder.py`, or `review_logging.py` changes.
+Use this whenever `prepare_review_folder.py`, `show_normalized_batch.py`, `persist_review_folder.py`, or `review_logging.py` changes.
 
 ## Semantic Decision Guidance
 
@@ -159,7 +186,6 @@ Each run directory contains:
 - `accepted_candidates.json`
 - `rejected_candidates.json`
 - `summary.json`
-- logs under `skills\review-cn-sososo-search\logs\review-cn-sososo-search_logs\`
+- logs under `logs\review-cn-sososo-search_logs\`
 
 Return the artifact paths, summary counts, and relevant log file paths once the run is complete.
-
