@@ -36,17 +36,17 @@ python sososo.py --query "bank fake" --max-page 10 --batch 30
 - Batch JSON: `batches/YYMMDD-HHMMSS/0001.json`
 - Log file: `logs/sososo_logs/sososo-YYMMDD-HHMMSS-xxxxxx.log`
 
-## Skill review title tieng Trung
+## Skill review title tiếng Trung
 
-Repo hien co them skill `review-sector-cybercrime-cn-titles` tai `skills/review-cn-sososo-search/review-sector-cybercrime-cn-titles`.
+Repo hiện có thêm skill `review-sector-cybercrime-cn-titles` tại `skills/review-cn-sososo-search/review-sector-cybercrime-cn-titles`.
 
 - Trigger: `$review-sector-cybercrime-cn-titles <folder>`
-- Muc dich: review semantic cac title tieng Trung trong cac file `0001.json -> xxxx.json` va danh dau cac title lien quan toi cybercrime trong nhom `banking`, `securities`, `financial`, `government`
-- Khong dung regex de quyet dinh `accept/reject`; phan danh gia do Codex suy luan
-- Thu muc ket qua mac dinh: `skills/review-cn-sososo-search/reviews/review-cn-sososo-search/<ten-folder-dau-vao>`
-- Thu muc log mac dinh: `skills/review-cn-sososo-search/logs/review-cn-sososo-search_logs/`
+- Mục đích: review semantic các title tiếng Trung trong các file `0001.json -> xxxx.json` và đánh dấu các title liên quan tới cybercrime trong nhóm `banking`, `securities`, `financial`, `government`
+- Không dùng regex để quyết định `accept/reject`; phần đánh giá do Codex suy luận
+- Thư mục kết quả mặc định: `skills/review-cn-sososo-search/reviews/review-cn-sososo-search/<tên-folder-đầu-vào>`
+- Thư mục log mặc định: `skills/review-cn-sososo-search/logs/review-cn-sososo-search_logs/`
 
-Artifacts chinh cua skill:
+Artifacts chính của skill:
 
 - `manifest.json`
 - `normalized/*.input.json`
