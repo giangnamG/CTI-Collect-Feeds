@@ -1,41 +1,41 @@
 # CTI-Collect-Feeds
 
-`sososo.py` la script crawl ket qua tu bot Telegram `@sososo`, chi trich xuat `title + link` va ghi ket qua thanh cac file JSON theo batch.
+`sososo.py` là script crawl kết quả từ bot Telegram `@sososo`, chỉ trích xuất `title + link` và ghi kết quả thành các file JSON theo batch.
 
-## Tinh nang hien co
+## Tính năng hiện có
 
-- Gui query toi `@sososo` qua `telegram-mcp`
-- Crawl theo tung trang voi `--max-page`
-- Tach va dedupe `title + link`
-- Ghi ket qua JSON theo batch voi `--batch`
-- Luu file vao `batches/YYMMDD-HHMMSS/0001.json`
-- Phat hien challenge cua bot theo kien truc detector mo rong
-- Ho tro challenge phep tinh co goi y dap an
-- Hoi user xac nhan `y/n` sau khi giai challenge de tiep tuc crawl
-- Console log mau theo tung buoc va luu file log vao `logs/sososo_logs`
-- Ket thuc chuong trinh chi in summary ra console, khong dump toan bo items
+- Gửi query tới `@sososo` qua `telegram-mcp`
+- Crawl theo từng trang với `--max-page`
+- Tách và dedupe `title + link`
+- Ghi kết quả JSON theo batch với `--batch`
+- Lưu file vào `batches/YYMMDD-HHMMSS/0001.json`
+- Phát hiện challenge của bot theo kiến trúc detector mở rộng
+- Hỗ trợ challenge phép tính có gợi ý đáp án
+- Hỏi user xác nhận `y/n` sau khi giải challenge để tiếp tục crawl
+- Console log màu theo từng bước và lưu file log vào `logs/sososo_logs`
+- Kết thúc chương trình chỉ in summary ra console, không dump toàn bộ items
 
-## Cach dung
+## Cách dùng
 
 ```powershell
 python sososo.py --query "bank fake" --max-page 10 --batch 30
 ```
 
-## Tham so chinh
+## Tham số chính
 
-- `--query`: tu khoa can crawl
-- `--max-page`: so trang toi da se crawl
-- `--batch`: so item trong moi file JSON
-- `--output-dir`: thu muc goc de ghi `batches/` va `logs/`
-- `--history-limit`: so message lich su moi lan poll
-- `--poll-interval`: thoi gian cho giua cac lan poll
-- `--max-polls-per-step`: so lan poll toi da cho moi buoc
+- `--query`: từ khóa cần crawl. Đây là tham số bắt buộc, ví dụ: `--query "bank fake"`.
+- `--max-page`: số trang tối đa sẽ crawl. Đây là tham số bắt buộc, ví dụ: `--max-page 10`.
+- `--batch`: số item trong mỗi file JSON. Giá trị phải là số nguyên lớn hơn hoặc bằng `1`. Mặc định: `50 item`.
+- `--output-dir`: thư mục gốc để ghi `batches/` và `logs/`. Mặc định: thư mục hiện tại `.`.
+- `--history-limit`: số message lịch sử lấy về ở mỗi lần poll từ `@sososo`. Mặc định: `20 message`.
+- `--poll-interval`: thời gian chờ giữa các lần poll, tính theo giây. Mặc định: `2.0 giây`.
+- `--max-polls-per-step`: số lần poll tối đa cho mỗi bước trước khi timeout. Mặc định: `90 lần poll`.
 
 ## Output
 
 - Batch JSON: `batches/YYMMDD-HHMMSS/0001.json`
 - Log file: `logs/sososo_logs/sososo-YYMMDD-HHMMSS-xxxxxx.log`
 
-## Ghi chu
+## Ghi chú
 
-Script can `telegram-mcp` dang chay va Python environment co package `mcp`.
+Script cần `telegram-mcp` đang chạy và Python environment có package `mcp`.
