@@ -333,21 +333,31 @@ class BotChallengeInspector:
     def __init__(self, detectors: list[ChallengeDetector] | None = None) -> None:
         self.detectors = detectors or [ArithmeticChallengeDetector()]
 
+    def detect_in_text(self, message_text: str) -> ChallengeMatch | None:
+        if parse_page_info(message_text) or parse_items(message_text):
+            return None
+        for detector in self.detectors:
+            match = detector.detect(message_text)
+            if match is not None:
+                return match
+        return None
+
+    def detect_in_block(self, block: dict[str, Any]) -> DetectedChallenge | None:
+        match = self.detect_in_text(block.get("text", ""))
+        if match is None:
+            return None
+        return DetectedChallenge(
+            message_id=int(block["id"]),
+            sender=normalize(block.get("sender")),
+            date=normalize(block.get("date")),
+            match=match,
+        )
+
     def detect_from_blocks(self, blocks: list[dict[str, Any]]) -> DetectedChallenge | None:
         for block in reversed(blocks):
-            text = block.get("text", "")
-            if parse_page_info(text) or parse_items(text):
-                continue
-            for detector in self.detectors:
-                match = detector.detect(text)
-                if match is None:
-                    continue
-                return DetectedChallenge(
-                    message_id=int(block["id"]),
-                    sender=normalize(block.get("sender")),
-                    date=normalize(block.get("date")),
-                    match=match,
-                )
+            detected = self.detect_in_block(block)
+            if detected is not None:
+                return detected
         return None
 
 
@@ -487,6 +497,46 @@ def select_result_block(blocks: list[dict[str, Any]], query: str) -> dict[str, A
     return candidates[-1]
 
 
+def find_latest_block(
+    blocks: list[dict[str, Any]],
+    *,
+    sender: str | None = None,
+    min_message_id: int | None = None,
+) -> dict[str, Any] | None:
+    normalized_sender = normalize(sender).lower() if sender is not None else None
+    candidates: list[dict[str, Any]] = []
+
+    for block in blocks:
+        block_id = int(block["id"])
+        if min_message_id is not None and block_id < min_message_id:
+            continue
+        if normalized_sender is not None and normalize(block.get("sender")).lower() != normalized_sender:
+            continue
+        candidates.append(block)
+
+    if not candidates:
+        return None
+
+    candidates.sort(key=lambda item: int(item["id"]))
+    return candidates[-1]
+
+
+def build_page_payload(block: dict[str, Any]) -> dict[str, Any]:
+    page_info = parse_page_info(block["text"])
+    if page_info is None:
+        raise RuntimeError("Found candidate message without parsable page info.")
+
+    page_number, total_pages = page_info
+    items = parse_items(block["text"])
+    return {
+        "message_id": int(block["id"]),
+        "page": page_number,
+        "total_pages": total_pages,
+        "items": items,
+        "raw_text": block["text"],
+    }
+
+
 def is_callback_timeout_error(exc: BaseException) -> bool:
     detail = normalize(exc).lower()
     if not detail:
@@ -604,28 +654,107 @@ class SOSOSO:
         await self.transport.send_message("@sososo", query)
         self.logger.info("Query sent successfully.")
 
-    async def wait_for_challenge_resolution(self, challenge: DetectedChallenge) -> None:
-        answer_hint = (
-            f"- Suggested answer: {challenge.match.answer}\n" if challenge.match.answer is not None else ""
+    def verify_challenge_answer(self, challenge: DetectedChallenge) -> str:
+        suggested_answer = normalize(challenge.match.answer)
+        if not suggested_answer:
+            raise RuntimeError("Detected bot challenge did not produce a suggested answer.")
+
+        verified = self.challenge_inspector.detect_in_text(challenge.match.prompt)
+        if verified is None or normalize(verified.answer) != suggested_answer:
+            raise RuntimeError(
+                "Challenge answer verification failed "
+                f"| prompt={challenge.match.prompt} | suggested={suggested_answer}"
+            )
+
+        self.logger.info(
+            f"Verified challenge answer before reply | prompt={challenge.match.prompt} | answer={suggested_answer}"
         )
+        return suggested_answer
+
+    async def verify_challenge_resolution(
+        self,
+        challenge: DetectedChallenge,
+        *,
+        query: str,
+        current_page: int | None,
+    ) -> dict[str, Any] | None:
+        for attempt in range(1, self.max_polls_per_step + 1):
+            self.logger.info(
+                f"Verifying challenge resolution | attempt={attempt}/{self.max_polls_per_step} "
+                f"| challenge_message_id={challenge.message_id}"
+            )
+            history_text = await self.transport.get_history("@sososo", self.history_limit)
+            blocks = parse_history_blocks(history_text)
+            latest_bot_block = find_latest_block(
+                blocks,
+                sender=challenge.sender,
+                min_message_id=challenge.message_id,
+            )
+            if latest_bot_block is None:
+                self.logger.info("Challenge verification did not find any bot messages yet. Waiting for next poll.")
+                await asyncio.sleep(self.poll_interval)
+                continue
+
+            latest_bot_challenge = self.challenge_inspector.detect_in_block(latest_bot_block)
+            latest_bot_message_id = int(latest_bot_block["id"])
+            if latest_bot_challenge is not None:
+                if latest_bot_message_id > challenge.message_id:
+                    self.logger.error(
+                        "Bot challenge verification failed "
+                        f"| original_prompt={challenge.match.prompt} | latest_prompt={latest_bot_challenge.match.prompt}"
+                    )
+                    raise RuntimeError(
+                        "Bot challenge was not solved successfully; "
+                        f"latest prompt is still {latest_bot_challenge.match.prompt!r}."
+                    )
+                self.logger.info("Challenge prompt is still the latest bot message. Waiting for next verification poll.")
+                await asyncio.sleep(self.poll_interval)
+                continue
+
+            self.logger.step("Challenge resolved successfully. Resuming crawl.")
+            try:
+                result_block = select_result_block(blocks, query)
+            except RuntimeError:
+                return None
+
+            page_payload = build_page_payload(result_block)
+            if current_page is not None and int(page_payload["page"]) == current_page:
+                return None
+
+            self.logger.step(
+                f"Received results page {page_payload['page']}/{page_payload['total_pages']} "
+                f"| message_id={int(page_payload['message_id'])} | items={len(page_payload['items'])}"
+            )
+            return page_payload
+
+        self.logger.error(
+            f"Timed out verifying bot challenge resolution | challenge_message_id={challenge.message_id}"
+        )
+        raise RuntimeError("Timed out verifying bot challenge resolution.")
+
+    async def solve_challenge(
+        self,
+        challenge: DetectedChallenge,
+        *,
+        query: str,
+        current_page: int | None,
+    ) -> dict[str, Any] | None:
         self.logger.warning(
             "Bot challenge detected "
             f"| detector={challenge.match.detector_name} | prompt={challenge.match.prompt}"
         )
-        if challenge.match.answer is not None:
-            self.logger.warning(f"Suggested answer: {challenge.match.answer}")
-        self.logger.warning("Please solve the challenge in Telegram, then confirm here to continue.")
-
-        while True:
-            answer = await asyncio.to_thread(input, "Da giai challenge xong chua? (y/n): ")
-            normalized_answer = normalize(answer).lower()
-            if normalized_answer in {"y", "yes"}:
-                self.logger.step("User confirmed challenge is resolved. Resuming crawl.")
-                return
-            if normalized_answer in {"n", "no"}:
-                self.logger.error("User declined to continue after challenge prompt.")
-                raise RuntimeError("User did not confirm challenge resolution.")
-            self.logger.warning("Invalid challenge confirmation input. Expected 'y' or 'n'.")
+        answer = self.verify_challenge_answer(challenge)
+        self.logger.warning(f"Suggested answer: {answer}")
+        self.logger.step(
+            f"Sending challenge answer to @sososo | detector={challenge.match.detector_name} | answer={answer}"
+        )
+        await self.transport.send_message("@sososo", answer)
+        self.logger.info("Challenge answer sent successfully.")
+        return await self.verify_challenge_resolution(
+            challenge,
+            query=query,
+            current_page=current_page,
+        )
 
     async def do_fetch_page(self, query: str, current_page: int | None = None) -> dict[str, Any]:
         for attempt in range(1, self.max_polls_per_step + 1):
@@ -640,36 +769,37 @@ class SOSOSO:
             except RuntimeError as exc:
                 challenge = self.challenge_inspector.detect_from_blocks(blocks)
                 if challenge is not None:
-                    await self.wait_for_challenge_resolution(challenge)
-                    await asyncio.sleep(self.poll_interval)
+                    page_payload = await self.solve_challenge(
+                        challenge,
+                        query=query,
+                        current_page=current_page,
+                    )
+                    if page_payload is not None:
+                        return page_payload
                     continue
                 self.logger.info("No matching paginated results block yet. Waiting for next poll.")
                 await asyncio.sleep(self.poll_interval)
                 continue
 
-            page_info = parse_page_info(block["text"])
-            if page_info is None:
+            try:
+                page_payload = build_page_payload(block)
+            except RuntimeError:
                 self.logger.warning("Found candidate message without parsable page info. Retrying.")
                 await asyncio.sleep(self.poll_interval)
                 continue
 
-            page_number, total_pages = page_info
+            page_number = int(page_payload["page"])
+            total_pages = int(page_payload["total_pages"])
             if current_page is not None and page_number == current_page:
                 self.logger.info(f"Still on page {page_number}. Waiting for a new page.")
                 await asyncio.sleep(self.poll_interval)
                 continue
 
             self.logger.step(
-                f"Received results page {page_number}/{total_pages} | message_id={int(block['id'])} "
-                f"| items={len(parse_items(block['text']))}"
+                f"Received results page {page_number}/{total_pages} | message_id={int(page_payload['message_id'])} "
+                f"| items={len(page_payload['items'])}"
             )
-            return {
-                "message_id": int(block["id"]),
-                "page": page_number,
-                "total_pages": total_pages,
-                "items": parse_items(block["text"]),
-                "raw_text": block["text"],
-            }
+            return page_payload
 
         self.logger.error("Timed out waiting for a new @sososo result page.")
         raise RuntimeError("Timed out waiting for a new @sososo result page.")
