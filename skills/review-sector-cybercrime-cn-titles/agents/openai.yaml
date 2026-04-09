@@ -1,6 +1,6 @@
 interface:
   display_name: "Review Sector Cybercrime CN Titles"
-  short_description: "Chinese title review for sector cybercrime."
-  default_prompt: "Use $review-sector-cybercrime-cn-titles with a batch token like 260318-233535 or an explicit folder path to review every numbered JSON file, resolve bare tokens under the repo batches directory, inspect prepared batches with bundled scripts, and persist review artifacts for banking, securities, financial, and government cybercrime triage."
+  short_description: "Chinese title review for sector cybercrime with Vietnamese outputs."
+  default_prompt: "Use $review-sector-cybercrime-cn-titles with a batch token like 260318-233535 or an explicit folder path to review every numbered JSON file, resolve bare tokens under the repo batches directory, reject news-like titles, focus on criminal buy-sell-broker-hack activity, emit Vietnamese reason and title_vi fields, and persist review artifacts for banking, securities, financial, and government cybercrime triage."
 policy:
   allow_implicit_invocation: false

@@ -31,6 +31,7 @@ BUTTON_RE = re.compile(
     r"^\[(?P<index>\d+)\]\s+text='(?P<text>.*?)',\s+callback=(?P<callback>yes|no)(?:,\s+url=(?P<url>.*))?$"
 )
 NEXT_MARKERS = ("下一页", "下页", "后一页", "➡", "→", "▶")
+NO_MORE_RESULTS_MARKERS = ("没有更多信息",)
 CALLBACK_TIMEOUT_MARKERS = (
     "botresponsetimeouterror",
     "getbotcallbackanswerrequest",
@@ -537,6 +538,27 @@ def build_page_payload(block: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def has_no_more_results_marker(message_text: str) -> bool:
+    normalized_text = normalize(message_text)
+    if not normalized_text:
+        return False
+    return any(marker in normalized_text for marker in NO_MORE_RESULTS_MARKERS)
+
+
+def find_no_more_results_block(
+    blocks: list[dict[str, Any]],
+    *,
+    min_message_id: int | None = None,
+) -> dict[str, Any] | None:
+    for block in sorted(blocks, key=lambda item: int(item["id"]), reverse=True):
+        block_id = int(block["id"])
+        if min_message_id is not None and block_id <= min_message_id:
+            continue
+        if has_no_more_results_marker(block.get("text", "")):
+            return block
+    return None
+
+
 def is_callback_timeout_error(exc: BaseException) -> bool:
     detail = normalize(exc).lower()
     if not detail:
@@ -756,14 +778,20 @@ class SOSOSO:
             current_page=current_page,
         )
 
-    async def do_fetch_page(self, query: str, current_page: int | None = None) -> dict[str, Any]:
+    async def do_fetch_page(
+        self,
+        query: str,
+        current_page: int | None = None,
+        min_message_id: int | None = None,
+    ) -> dict[str, Any] | None:
         for attempt in range(1, self.max_polls_per_step + 1):
             self.logger.info(
                 f"Polling @sososo history for results | attempt={attempt}/{self.max_polls_per_step} "
-                f"| current_page={current_page}"
+                f"| current_page={current_page} | min_message_id={min_message_id}"
             )
             history_text = await self.transport.get_history("@sososo", self.history_limit)
             blocks = parse_history_blocks(history_text)
+            no_more_block = find_no_more_results_block(blocks, min_message_id=min_message_id)
             try:
                 block = select_result_block(blocks, query)
             except RuntimeError as exc:
@@ -777,6 +805,12 @@ class SOSOSO:
                     if page_payload is not None:
                         return page_payload
                     continue
+                if no_more_block is not None:
+                    self.logger.step(
+                        "Bot reported no more information. Stopping pagination "
+                        f"| message_id={int(no_more_block['id'])}"
+                    )
+                    return None
                 self.logger.info("No matching paginated results block yet. Waiting for next poll.")
                 await asyncio.sleep(self.poll_interval)
                 continue
@@ -791,6 +825,12 @@ class SOSOSO:
             page_number = int(page_payload["page"])
             total_pages = int(page_payload["total_pages"])
             if current_page is not None and page_number == current_page:
+                if no_more_block is not None:
+                    self.logger.step(
+                        "Bot reported no more information after next-page request. Stopping pagination "
+                        f"| message_id={int(no_more_block['id'])}"
+                    )
+                    return None
                 self.logger.info(f"Still on page {page_number}. Waiting for a new page.")
                 await asyncio.sleep(self.poll_interval)
                 continue
@@ -870,64 +910,79 @@ class SOSOSO:
         batch_pages: set[int] = set()
         batch_files: list[str] = []
         current_page: int | None = None
+        current_message_id: int | None = None
         provider_total_pages: int | None = None
 
-        while True:
-            page_payload = await self.do_fetch_page(query, current_page=current_page)
-            current_page = int(page_payload["page"])
-            provider_total_pages = int(page_payload["total_pages"])
-            pages.append(
-                {
-                    "page": current_page,
-                    "message_id": int(page_payload["message_id"]),
-                    "items_count": len(page_payload["items"]),
-                }
-            )
-            self.logger.info(
-                f"Processing page {current_page}/{provider_total_pages} | raw_items={len(page_payload['items'])}"
-            )
+        try:
+            while True:
+                page_payload = await self.do_fetch_page(
+                    query,
+                    current_page=current_page,
+                    min_message_id=current_message_id,
+                )
+                if page_payload is None:
+                    self.logger.step("Pagination stopped because the bot reported no more information.")
+                    break
 
-            for item in page_payload["items"]:
-                key = normalize(item["link"]).lower() or normalize(item["title"]).lower()
-                if key in seen_keys:
-                    continue
-                seen_keys.add(key)
-                all_items.append(item)
-                batch_items.append(item)
-                batch_pages.add(current_page)
-                if len(batch_items) >= self.batch_size:
-                    batch_file = self.flush_batch(
-                        query=query,
-                        batch_items=batch_items,
-                        batch_pages=batch_pages,
-                        provider_total_pages=provider_total_pages,
-                    )
-                    if batch_file is not None:
-                        batch_files.append(batch_file)
-                    batch_items = []
-                    batch_pages = set()
+                current_page = int(page_payload["page"])
+                current_message_id = int(page_payload["message_id"])
+                provider_total_pages = int(page_payload["total_pages"])
+                pages.append(
+                    {
+                        "page": current_page,
+                        "message_id": current_message_id,
+                        "items_count": len(page_payload["items"]),
+                    }
+                )
+                self.logger.info(
+                    f"Processing page {current_page}/{provider_total_pages} | raw_items={len(page_payload['items'])}"
+                )
 
-            if current_page >= max_page:
-                self.logger.step(f"Reached requested max_page={max_page}. Stopping crawl.")
-                break
-            if provider_total_pages is not None and current_page >= provider_total_pages:
-                self.logger.step(f"Reached provider last page={provider_total_pages}. Stopping crawl.")
-                break
+                for item in page_payload["items"]:
+                    key = normalize(item["link"]).lower() or normalize(item["title"]).lower()
+                    if key in seen_keys:
+                        continue
+                    seen_keys.add(key)
+                    all_items.append(item)
+                    batch_items.append(item)
+                    batch_pages.add(current_page)
+                    if len(batch_items) >= self.batch_size:
+                        batch_file = self.flush_batch(
+                            query=query,
+                            batch_items=batch_items,
+                            batch_pages=batch_pages,
+                            provider_total_pages=provider_total_pages,
+                        )
+                        if batch_file is not None:
+                            batch_files.append(batch_file)
+                        batch_items = []
+                        batch_pages = set()
 
-            has_next = await self.do_press_next(int(page_payload["message_id"]))
-            if not has_next:
-                self.logger.step("Pagination stopped because no next-page button was available.")
-                break
+                if current_page >= max_page:
+                    self.logger.step(f"Reached requested max_page={max_page}. Stopping crawl.")
+                    break
+                if provider_total_pages is not None and current_page >= provider_total_pages:
+                    self.logger.step(f"Reached provider last page={provider_total_pages}. Stopping crawl.")
+                    break
 
-        if batch_items:
-            batch_file = self.flush_batch(
-                query=query,
-                batch_items=batch_items,
-                batch_pages=batch_pages,
-                provider_total_pages=provider_total_pages,
-            )
-            if batch_file is not None:
-                batch_files.append(batch_file)
+                has_next = await self.do_press_next(current_message_id)
+                if not has_next:
+                    self.logger.step("Pagination stopped because no next-page button was available.")
+                    break
+        except BaseException as exc:
+            if isinstance(exc, (KeyboardInterrupt, asyncio.CancelledError)):
+                self.logger.warning("Crawl interrupted. Flushing buffered items before exit.")
+            raise
+        finally:
+            if batch_items:
+                batch_file = self.flush_batch(
+                    query=query,
+                    batch_items=batch_items,
+                    batch_pages=batch_pages,
+                    provider_total_pages=provider_total_pages,
+                )
+                if batch_file is not None:
+                    batch_files.append(batch_file)
 
         result = {
             "query": normalize(query),

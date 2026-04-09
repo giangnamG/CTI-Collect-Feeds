@@ -29,7 +29,8 @@ If needed, override the workspace root with the environment variable `REVIEW_SEC
 Assume the titles are Chinese by default.
 Review them through Chinese semantics, Chinese slang, abbreviations, euphemisms, mixed Chinese-English wording, and criminal marketplace phrasing.
 Do not downgrade a title just because it uses shorthand, homophones, transliterated jargon, or partial English fragments inside otherwise Chinese text.
-Prefer concise Chinese reasons in `reason` unless the caller explicitly asks for another language.
+Write `reason` in concise Vietnamese.
+Add a concise Vietnamese rendering in `title_vi` for every review item.
 
 ## Hard Boundaries
 
@@ -39,6 +40,7 @@ Prefer concise Chinese reasons in `reason` unless the caller explicitly asks for
 - Never skip files that match the numbered-file contract.
 - Never reorder items inside a file.
 - Never rewrite `title`, `link`, `source_file`, or `item_index` values in review outputs.
+- Never translate or paraphrase the preserved source `title`; put the Vietnamese rendering only in `title_vi`.
 - Use the helper scripts only for discovery, normalization, prepared-batch inspection, validation, artifact persistence, and workflow logging.
 - Never use ad-hoc `python -c`, shell one-liners, or quoting-sensitive inline scripts to inspect normalized inputs when `show_normalized_batch.py` can read them directly.
 
@@ -105,6 +107,8 @@ Use the helper script instead of ad-hoc shell snippets so the review flow stays 
 
 Review every normalized input file listed in `manifest.files`.
 Make decisions from Chinese meaning, intent, implied criminal workflow, victim sector, and monetization pattern.
+Prioritize titles that indicate criminal trading, brokering, exchanging, facilitating, hacking, phishing, compromise, access sales, stolen data, fraud infrastructure, or adjacent monetized cybercrime operations.
+Treat news headlines, official bulletins, general incident reporting, commentary, and educational or observational posts as rejects unless the title itself is advertising or enabling a concrete criminal service, commodity, or operation.
 Do not reduce the task to literal word matching.
 
 For each normalized input file, create the matching draft file under `drafts/` with this shape:
@@ -117,9 +121,10 @@ For each normalized input file, create the matching draft file under `drafts/` w
       "source_file": "0001.json",
       "item_index": 1,
       "title": "工商银行钓鱼登录页",
+      "title_vi": "Trang đăng nhập giả mạo của Ngân hàng Công Thương",
       "link": "https://t.me/example/1",
       "decision": "accept",
-      "reason": "标题指向银行钓鱼登录页与凭证窃取场景。",
+      "reason": "Tiêu đề cho thấy đây là trang đăng nhập giả mạo để lừa lấy thông tin truy cập ngân hàng.",
       "sector_tags": ["banking"],
       "crime_signals": ["phishing", "credential-theft"],
       "priority": "high"
@@ -133,10 +138,11 @@ Rules:
 - Emit one review item for every normalized input item.
 - Preserve the exact order from the normalized file.
 - Keep `title`, `link`, `source_file`, and `item_index` identical to the normalized input.
-- Always include `decision`, `reason`, `sector_tags`, `crime_signals`, and `priority`.
+- Always include `title_vi`, `decision`, `reason`, `sector_tags`, `crime_signals`, and `priority`.
 - Use empty arrays for `sector_tags` and `crime_signals` only when the item is rejected.
 - Use `priority = low` for rejects.
 - Use `priority = medium` or `high` for accepts.
+- Write `title_vi` and `reason` in Vietnamese.
 
 ### 4. Persist the reviewed outputs
 
@@ -168,11 +174,12 @@ Use this whenever `prepare_review_folder.py`, `show_normalized_batch.py`, `persi
 
 ## Semantic Decision Guidance
 
-- Accept titles that clearly advertise or strongly imply Chinese-language phishing, credential theft, account takeover, impersonation, malware delivery, illicit access sales, fraud operations, laundering flows, fake investment platforms, stolen-data trading, or similar cybercrime behavior.
+- Accept titles that clearly advertise or strongly imply Chinese-language phishing, credential theft, account takeover, impersonation, malware delivery, illicit access sales, fraud operations, laundering flows, fake investment platforms, stolen-data trading, brokered transactions, exchange services for illicit assets, or similar cybercrime behavior.
 - Accept only when the victim or abused ecosystem is credibly tied to banking, securities, broader financial infrastructure, or government services.
-- Reject generic finance chatter, investment education, ordinary broker communities, official notices, policy news, or sector mentions without a defensible cybercrime implication.
+- Reject generic finance chatter, investment education, ordinary broker communities, official notices, policy news, straight news headlines, breach reporting, market commentary, or sector mentions without a defensible cybercrime implication.
+- Reject titles that merely report an incident or discuss a topic, even if the incident involves hacking, unless the title itself is offering, requesting, exchanging, brokering, or operationalizing cybercrime activity.
 - Favor a defensible reject over an imaginative accept when the title is ambiguous.
-- Keep the reason short, concrete, and evidence-based.
+- Keep the reason short, concrete, evidence-based, and in Vietnamese.
 - Read `references/semantic-signals.md` only as optional recall support.
 
 ## Stored Artifacts

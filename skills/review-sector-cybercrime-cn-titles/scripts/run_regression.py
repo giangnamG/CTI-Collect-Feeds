@@ -162,9 +162,10 @@ def main() -> None:
                         "source_file": "0001.json",
                         "item_index": 1,
                         "title": "工商银行钓鱼登录页",
+                        "title_vi": "Trang đăng nhập giả mạo của Ngân hàng Công Thương",
                         "link": "https://t.me/example/1",
                         "decision": "accept",
-                        "reason": "标题明确指向银行钓鱼登录场景。",
+                        "reason": "Tiêu đề cho thấy đây là trang đăng nhập giả mạo nhắm vào ngân hàng.",
                         "sector_tags": ["banking"],
                         "crime_signals": ["phishing", "credential-theft"],
                         "priority": "high",
@@ -173,9 +174,10 @@ def main() -> None:
                         "source_file": "0001.json",
                         "item_index": 2,
                         "title": "银行官方维护通知",
+                        "title_vi": "Thong bao bao tri chinh thuc cua ngan hang",
                         "link": "https://t.me/example/2",
                         "decision": "reject",
-                        "reason": "更像正常银行公告，没有明确犯罪含义。",
+                        "reason": "Day la tieu de dang thong bao chinh thuc, khong phai giao dich hay hoat dong toi pham mang.",
                         "sector_tags": [],
                         "crime_signals": [],
                         "priority": "low",
@@ -184,9 +186,10 @@ def main() -> None:
                         "source_file": "0001.json",
                         "item_index": 3,
                         "title": "政务平台仿站源码",
+                        "title_vi": "Ma nguon trang gia mao nen tang dich vu cong",
                         "link": None,
                         "decision": "accept",
-                        "reason": "指向仿冒政务平台的钓鱼基础设施。",
+                        "reason": "Tieu de the hien ha tang gia mao cong dich vu cong de phuc vu lua dao.",
                         "sector_tags": ["government"],
                         "crime_signals": ["phishing", "impersonation"],
                         "priority": "high",
@@ -203,9 +206,10 @@ def main() -> None:
                         "source_file": "0002.json",
                         "item_index": 1,
                         "title": "股票交流学习群",
+                        "title_vi": "Nhom giao luu hoc tap ve co phieu",
                         "link": None,
                         "decision": "reject",
-                        "reason": "只是普通证券交流，没有明确网络犯罪语义。",
+                        "reason": "Chi la nhom trao doi thong thuong ve chung khoan, khong co dau hieu toi pham mang.",
                         "sector_tags": [],
                         "crime_signals": [],
                         "priority": "low",
@@ -214,9 +218,10 @@ def main() -> None:
                         "source_file": "0002.json",
                         "item_index": 2,
                         "title": "税务账号料出售",
+                        "title_vi": "Ban du lieu tai khoan thue vu",
                         "link": "https://t.me/example/3",
                         "decision": "accept",
-                        "reason": "直接表达政府税务账号资料出售。",
+                        "reason": "Tieu de the hien viec rao ban du lieu tai khoan thue vu cua co quan nha nuoc.",
                         "sector_tags": ["government"],
                         "crime_signals": ["credential-theft", "access-sale"],
                         "priority": "high",
@@ -235,6 +240,12 @@ def main() -> None:
             raise SystemExit(f"Expected 2 rejected items, got {summary['rejected_total']}")
         if summary["sector_counts"] != {"banking": 1, "government": 2}:
             raise SystemExit(f"Unexpected sector counts: {summary['sector_counts']}")
+        reviewed_batch = load_json(run_dir / "reviewed" / "0001.reviewed.json")
+        if reviewed_batch["items"][0]["title_vi"] != "Trang đăng nhập giả mạo của Ngân hàng Công Thương":
+            raise SystemExit("Expected reviewed artifacts to preserve title_vi.")
+        accepted_candidates = load_json(run_dir / "accepted_candidates.json")
+        if accepted_candidates[0]["title_vi"] != "Trang đăng nhập giả mạo của Ngân hàng Công Thương":
+            raise SystemExit("Expected accepted candidates to include title_vi.")
         if Path(summary["log_dir"]).resolve() != log_dir.resolve():
             raise SystemExit(f"Unexpected summary log_dir: {summary['log_dir']}")
         persist_log_file = Path(summary["log_file"]).resolve()
@@ -258,9 +269,10 @@ def main() -> None:
                         "source_file": "0001.json",
                         "item_index": 1,
                         "title": "被篡改的标题",
+                        "title_vi": "Tieu de da bi sua doi",
                         "link": "https://t.me/example/1",
                         "decision": "accept",
-                        "reason": "Should fail because the title changed.",
+                        "reason": "Phai that bai vi title goc da bi thay doi.",
                         "sector_tags": ["banking"],
                         "crime_signals": ["phishing"],
                         "priority": "high",
@@ -269,9 +281,10 @@ def main() -> None:
                         "source_file": "0001.json",
                         "item_index": 2,
                         "title": "银行官方维护通知",
+                        "title_vi": "Thong bao bao tri chinh thuc cua ngan hang",
                         "link": "https://t.me/example/2",
                         "decision": "reject",
-                        "reason": "Still a reject.",
+                        "reason": "Van la tieu de dang thong bao binh thuong.",
                         "sector_tags": [],
                         "crime_signals": [],
                         "priority": "low",
@@ -280,9 +293,10 @@ def main() -> None:
                         "source_file": "0001.json",
                         "item_index": 3,
                         "title": "政务平台仿站源码",
+                        "title_vi": "Ma nguon trang gia mao nen tang dich vu cong",
                         "link": None,
                         "decision": "accept",
-                        "reason": "Still an accept.",
+                        "reason": "Van the hien ha tang gia mao de phuc vu lua dao.",
                         "sector_tags": ["government"],
                         "crime_signals": ["phishing"],
                         "priority": "high",
@@ -291,6 +305,13 @@ def main() -> None:
             },
         )
         write_json(bad_review_dir / "0002.review.json", load_json(drafts_dir / "0002.review.json"))
+
+        missing_title_vi_dir = temp_dir / "missing-title-vi"
+        missing_title_vi_dir.mkdir(parents=True, exist_ok=True)
+        missing_title_vi_batch = load_json(drafts_dir / "0001.review.json")
+        del missing_title_vi_batch["items"][0]["title_vi"]
+        write_json(missing_title_vi_dir / "0001.review.json", missing_title_vi_batch)
+        write_json(missing_title_vi_dir / "0002.review.json", load_json(drafts_dir / "0002.review.json"))
 
         bad_result = run_python(
             persist_script,
@@ -302,6 +323,17 @@ def main() -> None:
         )
         if bad_result.returncode == 0:
             raise SystemExit("Expected persist_review_folder.py to fail on a mutated title.")
+
+        missing_title_vi_result = run_python(
+            persist_script,
+            "--manifest",
+            str(run_dir / "manifest.json"),
+            "--review-dir",
+            str(missing_title_vi_dir),
+            cwd=root,
+        )
+        if missing_title_vi_result.returncode == 0:
+            raise SystemExit("Expected persist_review_folder.py to fail when title_vi is missing.")
 
         print(f"Regression checks passed. Artifacts: {temp_dir}")
     finally:

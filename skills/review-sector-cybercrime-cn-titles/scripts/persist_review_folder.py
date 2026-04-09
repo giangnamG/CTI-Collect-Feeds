@@ -92,6 +92,7 @@ def normalize_review_item(
     if review_item.get("link") != expected_item["link"]:
         raise SystemExit(f"{error_prefix} must preserve 'link'.")
 
+    title_vi = require_non_empty_string(review_item.get("title_vi"), f"{error_prefix} requires a non-empty 'title_vi'.")
     decision = review_item.get("decision")
     priority = review_item.get("priority")
     reason = require_non_empty_string(review_item.get("reason"), f"{error_prefix} requires a non-empty 'reason'.")
@@ -120,6 +121,7 @@ def normalize_review_item(
         "source_file": expected_item["source_file"],
         "item_index": expected_item["item_index"],
         "title": expected_item["title"],
+        "title_vi": title_vi,
         "link": expected_item["link"],
         "decision": decision,
         "reason": reason,

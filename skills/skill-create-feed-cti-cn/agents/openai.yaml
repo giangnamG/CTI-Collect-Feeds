@@ -1,0 +1,11 @@
+interface:
+  display_name: "Create Feed CTI CN"
+  short_description: "Turn Chinese Telegram chat context into bilingual CTI feeds."
+  default_prompt: "Use $skill-create-feed-cti-cn https://t.me/<chat>/<message_id> to review one Telegram message with about 20 messages before and 20 after, and create a bilingual CTI feed only when the evidence is in scope."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "telegram"
+      description: "Telegram MCP tools for message context and chat metadata."
+policy:
+  allow_implicit_invocation: false

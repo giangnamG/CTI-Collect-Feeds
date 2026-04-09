@@ -63,7 +63,9 @@ Giải thích workflow:
 - `prepare_review_folder.py`: quét thư mục input, chỉ lấy các file JSON được đánh số như `0001.json`, normalize dữ liệu đầu vào, tạo `manifest.json`, và dựng sẵn các thư mục làm việc như `normalized/`, `drafts/`, `reviewed/`.
 - `show_normalized_batch.py --list-files`: đọc `manifest.json` và liệt kê những file nguồn nào đã được chuẩn hóa, mỗi file có bao nhiêu item, giúp biết chính xác batch nào cần review.
 - `show_normalized_batch.py --source-file "0001.json"`: mở một normalized batch cụ thể để reviewer xem đúng dữ liệu đã được chuẩn hóa trước khi đưa ra quyết định semantic.
-- Bước review semantic: Codex hoặc reviewer phải tạo `drafts/<file>.review.json` cho từng file, giữ nguyên `title`, `link`, `source_file`, `item_index`, rồi bổ sung `decision`, `reason`, `sector_tags`, `crime_signals`, `priority`.
+- Bước review semantic: Codex hoặc reviewer phải tạo `drafts/<file>.review.json` cho từng file, giữ nguyên `title`, `link`, `source_file`, `item_index`, rồi bổ sung `title_vi`, `decision`, `reason`, `sector_tags`, `crime_signals`, `priority`.
+- `title_vi` và `reason` phải viết bằng tiếng Việt.
+- Các title dạng tin tức, bản tin, thông báo, báo cáo sự cố, hoặc chỉ mang tính đưa tin phải `reject`; chỉ ưu tiên các title thể hiện mua/bán/trao đổi/môi giới/giao dịch trung gian/hack hoặc hoạt động cybercrime có tính vận hành.
 - `persist_review_folder.py`: validate toàn bộ draft review, khóa contract đầu ra, rồi tổng hợp sang `reviewed/`, `accepted_candidates.json`, `rejected_candidates.json`, `summary.json`.
 - `run_regression.py`: chỉ dùng khi sửa script của skill; script này kiểm tra end-to-end flow `prepare -> inspect -> persist` để tránh làm hỏng workflow review hiện có.
 - Khi gọi trực tiếp bằng skill `$review-sector-cybercrime-cn-titles`, Codex sẽ tự chạy toàn bộ flow này nếu input hợp lệ, nên người dùng thường không cần tự gõ từng lệnh tay.
