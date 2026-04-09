@@ -1,0 +1,663 @@
+[
+  {
+    "source_file": "0001.json",
+    "item_index": 24,
+    "title": "人脸认证【科创】KYC交易所",
+    "link": "https://t.me/jsnsjj9766",
+    "decision": "accept",
+    "reason": "标题直接指向交易所人脸KYC代过服务。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 25,
+    "title": "代实名/kyc/个人/企业/国外",
+    "link": "https://t.me/wxqiu",
+    "decision": "accept",
+    "reason": "标题兜售代实名与KYC服务，指向金融开户规避。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 27,
+    "title": "代实名/实名/kyc/认证",
+    "link": "https://t.me/dsmxy",
+    "decision": "accept",
+    "reason": "标题直接兜售代实名/KYC认证服务。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 28,
+    "title": "✅ 夸度全能国际kyc实名✅",
+    "link": "https://t.me/kdgzs3",
+    "decision": "accept",
+    "reason": "标题提供国际KYC实名服务，指向金融身份冒用。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 29,
+    "title": "❤️【VISA虚拟卡】【自动开卡】【匿名支付】【免KYC】【无限制】",
+    "link": "https://t.me/Byte_cz/163",
+    "decision": "accept",
+    "reason": "标题售卖免KYC匿名虚拟卡，指向支付滥用。",
+    "sector_tags": [
+      "banking",
+      "financial-services"
+    ],
+    "crime_signals": [
+      "payment-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 30,
+    "title": "💎💎【VISA虚拟卡】【自动开卡】【匿名支付】【免KYC】【无限制】",
+    "link": "https://t.me/Byte_cz/158",
+    "decision": "accept",
+    "reason": "标题售卖免KYC匿名虚拟卡，指向支付滥用。",
+    "sector_tags": [
+      "banking",
+      "financial-services"
+    ],
+    "crime_signals": [
+      "payment-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 32,
+    "title": "Kyc 国内外实名",
+    "link": "https://t.me/Okxkyckyc",
+    "decision": "accept",
+    "reason": "标题直接提供国内外KYC实名代办。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 35,
+    "title": "❤️ 盗刷 / 盗号 / 实名认证 / 代实名 / 过人脸 / 平台解..",
+    "link": "https://t.me/bf203027",
+    "decision": "accept",
+    "reason": "标题同时出现盗刷盗号与过人脸，指向金融账户欺诈。",
+    "sector_tags": [
+      "banking",
+      "financial-services"
+    ],
+    "crime_signals": [
+      "payment-fraud",
+      "account-takeover",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 43,
+    "title": "全球kyc护照驾照身份证",
+    "link": "https://t.me/cbcbqp",
+    "decision": "accept",
+    "reason": "标题兜售护照证件配合KYC，指向开户欺诈。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 46,
+    "title": "🏆中国最大,Ai换脸过人脸,免费料子,护照身份证手持料子KYC,实名...",
+    "link": "https://t.me/+JZhWZsTWsyE0Mjkx",
+    "decision": "accept",
+    "reason": "标题明确写明AI换脸过人脸与KYC料子。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "deepfake",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 48,
+    "title": "全球 护照 身份证 驾照 CVV KYC 证件 手持护照 手持身份证",
+    "link": "https://t.me/cvvssa3",
+    "decision": "accept",
+    "reason": "标题同时售卖CVV与证件KYC料，指向支付欺诈。",
+    "sector_tags": [
+      "banking",
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "payment-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 49,
+    "title": "诈骗昵称：实名 KYC服务 OKX SSN",
+    "link": "https://t.me/ygchbg/17694",
+    "decision": "accept",
+    "reason": "标题点名诈骗方提供OKX实名/KYC服务。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 50,
+    "title": "各种KYC资源",
+    "link": "https://t.me/veridocs",
+    "decision": "accept",
+    "reason": "标题兜售KYC资源，指向金融身份核验规避。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 2,
+    "title": "🔥身份证／护照／各国证件／一手货源／实名料子／手持／实名认证代实名／身..",
+    "link": "https://t.me/qqzjpfs",
+    "decision": "accept",
+    "reason": "标题售卖身份证护照与实名料子，指向开户欺诈。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 10,
+    "title": "🔥身份证／护照／各国证件／一手货源／实名料子／手持／实名认证代实名／身..",
+    "link": "https://t.me/kfkdeur",
+    "decision": "accept",
+    "reason": "标题售卖身份证护照与实名料子，指向开户欺诈。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 13,
+    "title": "🔥身份证／护照／各国证件／一手货源／实名料子／手持／实名认证代实名／身..",
+    "link": "https://t.me/kkjhgsd",
+    "decision": "accept",
+    "reason": "标题售卖身份证护照与实名料子，指向开户欺诈。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 22,
+    "title": "【杏彩体育实为黑台！KYC认证成新型黑钱套路】",
+    "link": "https://t.me/DGll8/6398",
+    "decision": "accept",
+    "reason": "标题指向黑台借KYC实施黑钱套路。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 26,
+    "title": "诈骗昵称：山虎kyc 国内外",
+    "link": "https://t.me/ygchbg/23657",
+    "decision": "accept",
+    "reason": "标题点名诈骗方经营国内外KYC服务。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 27,
+    "title": "诈骗昵称: 悟空 KYC 美工 全球证件",
+    "link": "https://t.me/ygchbg/946",
+    "decision": "accept",
+    "reason": "标题点名诈骗方提供KYC与全球证件服务。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 28,
+    "title": "科技高峰发现利用人工智能绕过银行生物识别技术的新伎俩",
+    "link": "https://t.me/qwbj1/45803",
+    "decision": "accept",
+    "reason": "标题明确写明利用AI绕过银行生物识别。",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "deepfake",
+      "biometric-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 32,
+    "title": "曼谷突袭中国盘总藏身地 4名头目落网用AI绕过银行系统",
+    "link": "https://t.me/chutian/6502",
+    "decision": "accept",
+    "reason": "标题直接写明AI绕过银行系统。",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "deepfake",
+      "biometric-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 37,
+    "title": "诈骗昵称：嘎子（各国证件 各国真人KYC）、Charlie",
+    "link": "https://t.me/ygchbg/7315",
+    "decision": "accept",
+    "reason": "标题点名诈骗方提供真人KYC与各国证件。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 39,
+    "title": "🫵实名／认证／人脸认证／代实名／KYC／营业执照认证／实名认证／法人实..",
+    "link": "https://t.me/ajsjsz",
+    "decision": "accept",
+    "reason": "标题提供法人与营业执照实名认证服务。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 49,
+    "title": "🔥身份证／护照／各国证件／一手货源／实名料子／手持／实名认证代实名／身..",
+    "link": "https://t.me/shshshhshj",
+    "decision": "accept",
+    "reason": "标题售卖身份证护照与实名料子，指向开户欺诈。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 50,
+    "title": "【官方直营】✅身份证护照｜各国证件一手货源｜实名料子手持｜实名认证代实..",
+    "link": "https://t.me/+1rNEQaQlzXYwMDcx",
+    "decision": "accept",
+    "reason": "标题售卖官方直营证件与代实名资源。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "document-forgery",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 2,
+    "title": "#越南新闻 科技高峰发现利用人工智能绕过银行生物识别技术的新伎俩",
+    "link": "https://t.me/HH9915/50055",
+    "decision": "accept",
+    "reason": "标题明确写明利用AI绕过银行生物识别。",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "deepfake",
+      "biometric-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 6,
+    "title": "台警方破获高技术诈骗案：星链通讯+Deepfake 绕过人脸验证",
+    "link": "https://t.me/pp666s/20462",
+    "decision": "accept",
+    "reason": "标题写明Deepfake绕过人脸验证，指向金融欺诈常见手法。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "deepfake",
+      "biometric-bypass",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 9,
+    "title": "#越南新闻：科技高峰发现利用人工智能绕过银行生物识别技术的新伎俩",
+    "link": "https://t.me/penpay00/5637",
+    "decision": "accept",
+    "reason": "标题明确写明利用AI绕过银行生物识别。",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "deepfake",
+      "biometric-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 18,
+    "title": "鲨鱼商店|KYC|支付|银行",
+    "link": "https://t.me/SKMKTBANK",
+    "decision": "accept",
+    "reason": "标题直接关联KYC、支付与银行服务。",
+    "sector_tags": [
+      "banking",
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "payment-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 46,
+    "title": "代实名/实名/kyc/认证",
+    "link": "https://t.me/kycshiminga",
+    "decision": "accept",
+    "reason": "标题直接兜售代实名/KYC认证服务。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 48,
+    "title": "💯KYC认证、海内外实名、完美售后、各种实名",
+    "link": "https://t.me/Lanqi888",
+    "decision": "accept",
+    "reason": "标题提供海内外实名与KYC认证服务。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 50,
+    "title": "血亏18万！乐投黑平台杀大户实锤：赢钱就封号吞本金，KYC审核竟是杀猪..",
+    "link": "https://t.me/DNYTTBGCG/25619",
+    "decision": "accept",
+    "reason": "标题指向黑平台借KYC审核实施提款欺诈。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "payment-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 1,
+    "title": "#5分钟造出假护照！ChatGPT-4o直捅KYC系统“七寸” 引发金..",
+    "link": "https://t.me/dongnanyattt/18191",
+    "decision": "accept",
+    "reason": "标题写明伪造护照冲击KYC系统。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "deepfake",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 8,
+    "title": "#5分钟造出假护照！ ChatGPT-4o直捅KYC系统“七寸” 引发..",
+    "link": "https://t.me/DNBS999/2342",
+    "decision": "accept",
+    "reason": "标题写明伪造护照冲击KYC系统。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "deepfake",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 9,
+    "title": "#5分钟造出假护照！ChatGPT-4o直捅KYC系统“七寸” 引发金..",
+    "link": "https://t.me/pyzcc/21625",
+    "decision": "accept",
+    "reason": "标题写明伪造护照冲击KYC系统。",
+    "sector_tags": [
+      "financial-services",
+      "government"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "deepfake",
+      "kyc-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 40,
+    "title": "代实名/认证/kyc/实名",
+    "link": "https://t.me/hkndehj",
+    "decision": "accept",
+    "reason": "标题直接兜售代实名/KYC服务。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 1,
+    "title": "【我帮国人在非洲做Worldcoin KYC】在东非某国找黑人做Wor..",
+    "link": "https://t.me/JiKeNews/74850",
+    "decision": "accept",
+    "reason": "标题描述代做Worldcoin KYC，指向身份冒用开户。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 39,
+    "title": "#泰国新闻 曼谷惊现中国诈骗团伙：AI 制作“假视频”骗银行 KYC，..",
+    "link": "https://t.me/jsj62/21455",
+    "decision": "accept",
+    "reason": "标题明确写明假视频骗银行KYC。",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "deepfake",
+      "kyc-bypass",
+      "biometric-bypass"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0009.json",
+    "item_index": 36,
+    "title": "诈骗昵称：可鸭kyc 海红牛诈骗账号： @haigongniu6诈骗金..",
+    "link": "https://t.me/ygchbg/23326",
+    "decision": "accept",
+    "reason": "标题点名诈骗方经营KYC服务，指向金融身份欺诈。",
+    "sector_tags": [
+      "financial-services"
+    ],
+    "crime_signals": [
+      "identity-fraud",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  }
+]

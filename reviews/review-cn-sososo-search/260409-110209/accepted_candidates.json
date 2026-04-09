@@ -1,0 +1,952 @@
+[
+  {
+    "source_file": "0001.json",
+    "item_index": 5,
+    "title": "P图-网银股票-P图软件-美工P图",
+    "title_vi": "Chỉnh ảnh ngân hàng trực tuyến và cổ phiếu",
+    "link": "https://t.me/jingliaohuashusucaitu",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán công cụ chỉnh sửa hình ảnh cho ngân hàng trực tuyến và cổ phiếu, hỗ trợ làm giả chứng từ tài chính.",
+    "sector_tags": [
+      "banking",
+      "securities"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 6,
+    "title": "P图-绘图大师·加密货币网银P图-作图软件",
+    "title_vi": "Công cụ chỉnh ảnh ngân hàng trực tuyến và tiền mã hóa",
+    "link": "https://t.me/www_sucaiKK6",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá công cụ làm giả hình ảnh cho ngân hàng trực tuyến và tiền mã hóa.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 7,
+    "title": "全国拿现金卡接码接车队跑分",
+    "title_vi": "Nhận thẻ tiền mặt, mã xác nhận và xe đội chạy điểm toàn quốc",
+    "link": "https://t.me/quanguonaxian2",
+    "decision": "accept",
+    "reason": "Tiêu đề rủ rê gom thẻ và chạy điểm, cho thấy hạ tầng trung chuyển tiền bất hợp pháp.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "mule-recruitment"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 8,
+    "title": "P图-转账模拟器·作图软件加密货币网银-P图-作图💰",
+    "title_vi": "Trình giả lập chuyển khoản và công cụ làm hình cho ngân hàng trực tuyến, tiền mã hóa",
+    "link": "https://t.me/jxuan438",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán trình giả lập chuyển khoản ngân hàng và tiền mã hóa để làm bằng chứng giả.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 9,
+    "title": "美股接盘｜港股接盘｜ipo大区｜股票接盘｜股票平台｜股票盘口｜",
+    "title_vi": "Đỡ giá cổ phiếu Mỹ, cổ phiếu Hồng Kông, khu IPO và nền tảng cổ phiếu",
+    "link": "https://t.me/bufangtg",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá dịch vụ đỡ giá và vận hành盘口 cổ phiếu, cho thấy thao túng thị trường chứng khoán.",
+    "sector_tags": [
+      "securities"
+    ],
+    "crime_signals": [
+      "market-manipulation",
+      "fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 29,
+    "title": "P图软件|旺财作图|加密货币网银-P图|作图软件",
+    "title_vi": "Phần mềm chỉnh ảnh Wangcai cho tiền mã hóa và ngân hàng trực tuyến",
+    "link": "https://t.me/liun011",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán công cụ làm giả hình ảnh cho ngân hàng trực tuyến và tiền mã hóa.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 31,
+    "title": "P图·作图软件【网银转账生成器P图软件】作图",
+    "title_vi": "Công cụ chỉnh ảnh, bộ tạo chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/yezhi165",
+    "decision": "accept",
+    "reason": "Tiêu đề nêu rõ bộ tạo chuyển khoản ngân hàng trực tuyến dùng để dựng chứng từ giả.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 36,
+    "title": "P图-旺财作图-网银股票-P图软件-美工P图",
+    "title_vi": "Chỉnh ảnh Wangcai cho ngân hàng trực tuyến và cổ phiếu",
+    "link": "https://t.me/sucaizx111",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá công cụ làm giả ảnh cho giao dịch ngân hàng và chứng khoán.",
+    "sector_tags": [
+      "banking",
+      "securities"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 43,
+    "title": "P图_柠柠 专业作图工具-加密货币网银P图软件",
+    "title_vi": "Công cụ chỉnh ảnh chuyên nghiệp cho tiền mã hóa và ngân hàng trực tuyến",
+    "link": "https://t.me/huashutaotujingliao",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán công cụ làm giả hình ảnh cho tiền mã hóa và ngân hàng trực tuyến.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 47,
+    "title": "港股接盘 · 美股接盘｜一手票方",
+    "title_vi": "Đỡ giá cổ phiếu Hồng Kông và Mỹ từ nguồn vé trực tiếp",
+    "link": "https://t.me/meigujiaoliu123",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá dịch vụ đỡ giá cổ phiếu, phù hợp thao túng thị trường chứng khoán.",
+    "sector_tags": [
+      "securities"
+    ],
+    "crime_signals": [
+      "market-manipulation",
+      "fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0001.json",
+    "item_index": 50,
+    "title": "api.cc 香港卡接码-PayPal-Facebook-bilibi..",
+    "title_vi": "Nền tảng nhận mã thẻ Hồng Kông cho PayPal và nhiều dịch vụ",
+    "link": "https://t.me/api38",
+    "decision": "accept",
+    "reason": "Tiêu đề cung cấp nhận mã cho PayPal, hỗ trợ tạo hoặc chiếm dụng tài khoản thanh toán.",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "account-farming",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 9,
+    "title": "牛牛接码-代实名认证-代付代收",
+    "title_vi": "Nhận mã, làm xác thực danh tính, thu hộ và chi hộ",
+    "link": "https://t.me/niuniu16661888",
+    "decision": "accept",
+    "reason": "Tiêu đề nêu rõ nhận mã,代实名 và代收代付, hỗ trợ mở tài khoản và luân chuyển tiền gian lận.",
+    "sector_tags": [
+      "financial",
+      "government"
+    ],
+    "crime_signals": [
+      "kyc-bypass",
+      "payment-processing-abuse"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 11,
+    "title": "至尊版网银转账P图模拟器 银图生成",
+    "title_vi": "Bản cao cấp giả lập chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/LDLD010",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán trình giả lập chuyển khoản ngân hàng để tạo chứng từ giả.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 18,
+    "title": "p图、旺财作图、网银转账、作图软件、美工p图",
+    "title_vi": "Chỉnh ảnh Wangcai, chuyển khoản ngân hàng trực tuyến và công cụ làm hình",
+    "link": "https://t.me/xaiofeiji_991",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá công cụ làm giả chuyển khoản ngân hàng trực tuyến.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 39,
+    "title": "p图-美工-网银转账（p图软件）",
+    "title_vi": "Chỉnh ảnh và chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/yuangchengchaok",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán công cụ chỉnh ảnh cho chuyển khoản ngân hàng trực tuyến.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 45,
+    "title": "P图【网银转账P图软件】",
+    "title_vi": "Chỉnh ảnh cho chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/iiiill666",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán phần mềm chỉnh ảnh dùng để làm giả chuyển khoản ngân hàng.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0002.json",
+    "item_index": 48,
+    "title": "美股接盘｜港股接盘｜港美股实盘｜票方中心",
+    "title_vi": "Đỡ giá cổ phiếu Mỹ, Hồng Kông và giao dịch thực盘",
+    "link": "https://t.me/GP889895",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá dịch vụ đỡ giá cổ phiếu, phù hợp thao túng thị trường chứng khoán.",
+    "sector_tags": [
+      "securities"
+    ],
+    "crime_signals": [
+      "market-manipulation",
+      "fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 32,
+    "title": "P图-转账模拟器·作图软件加密货币网银·P图·作图",
+    "title_vi": "Trình giả lập chuyển khoản và công cụ làm hình cho tiền mã hóa, ngân hàng trực tuyến",
+    "link": "https://t.me/wc1818168_zuotu",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán trình giả lập chuyển khoản ngân hàng trực tuyến và tiền mã hóa.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 33,
+    "title": "网银交易所P图软件",
+    "title_vi": "Phần mềm chỉnh ảnh cho ngân hàng trực tuyến và sàn giao dịch",
+    "link": "https://t.me/ZTeuanjian",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá công cụ làm giả hình ảnh cho ngân hàng trực tuyến và sàn giao dịch.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 34,
+    "title": "网银转账生成",
+    "title_vi": "Tạo chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/hessdc",
+    "decision": "accept",
+    "reason": "Tiêu đề nêu rõ dịch vụ tạo giao dịch chuyển khoản ngân hàng trực tuyến giả.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 35,
+    "title": "银图转账生成",
+    "title_vi": "Tạo chuyển khoản bằng hình ngân hàng",
+    "link": "https://t.me/hcddtc",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá công cụ tạo chứng từ chuyển khoản ngân hàng giả.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 40,
+    "title": "跑分 ｛白资收U ｝｛先款后U ｝｛一笔一回｝ 免押/日结5000+",
+    "title_vi": "Chạy điểm, thu U vốn sạch, ứng trước rồi hoàn U, chốt từng đơn",
+    "link": "https://t.me/caiyun5288",
+    "decision": "accept",
+    "reason": "Tiêu đề rủ rê chạy điểm và thu U, phù hợp mô hình rửa tiền qua tiền mã hóa.",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "mule-recruitment"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 41,
+    "title": "银图转账做图",
+    "title_vi": "Làm hình chuyển khoản bằng ảnh ngân hàng",
+    "link": "https://t.me/Tkoosd",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá dịch vụ làm hình chuyển khoản ngân hàng giả.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 44,
+    "title": "旺财作图-网银转账生成器-P图软件",
+    "title_vi": "Wangcai làm hình, bộ tạo chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/AKCCCCCB",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán công cụ tạo chuyển khoản ngân hàng trực tuyến giả.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0003.json",
+    "item_index": 46,
+    "title": "ws｜微信｜QQ｜支付宝｜抖音｜接码",
+    "title_vi": "Nhận mã cho WeChat, QQ, Alipay và Douyin",
+    "link": "https://t.me/A520314",
+    "decision": "accept",
+    "reason": "Tiêu đề cung cấp nhận mã cho Alipay cùng nhiều nền tảng, hỗ trợ tạo hoặc chiếm dụng tài khoản thanh toán.",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "account-farming",
+      "kyc-bypass"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 4,
+    "title": "P图【网银转账P图软件】",
+    "title_vi": "Chỉnh ảnh cho chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/lllkl6666",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán công cụ chỉnh ảnh dùng để làm giả chuyển khoản ngân hàng.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 7,
+    "title": "做图-软件-转账-网银",
+    "title_vi": "Làm hình, phần mềm, chuyển khoản và ngân hàng trực tuyến",
+    "link": "https://t.me/bvhnh",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán bộ công cụ làm hình cho chuyển khoản ngân hàng trực tuyến.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 10,
+    "title": "USDT截图网银转账生成器",
+    "title_vi": "Bộ tạo ảnh chụp USDT và chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/CXCXSDD",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá bộ tạo ảnh chụp USDT và chuyển khoản ngân hàng giả.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 11,
+    "title": "银图转账生成",
+    "title_vi": "Tạo chuyển khoản bằng hình ngân hàng",
+    "link": "https://t.me/yinlasd",
+    "decision": "accept",
+    "reason": "Tiêu đề nêu rõ dịch vụ tạo chứng từ chuyển khoản ngân hàng giả.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 20,
+    "title": "骤雨源头开户查档 寻律所 盘口合作",
+    "title_vi": "Nguồn mở tài khoản, tra hồ sơ và tìm hợp tác盘口",
+    "link": "https://t.me/zhouyukaihu",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán mở tài khoản và tra hồ sơ đầu nguồn, phục vụ gian lận tài chính và lạm dụng dữ liệu.",
+    "sector_tags": [
+      "financial",
+      "government"
+    ],
+    "crime_signals": [
+      "account-opening-fraud",
+      "data-brokering"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 32,
+    "title": "达利321 永发纯bc网页代收付跑分 押金100000U",
+    "title_vi": "Trang web cờ bạc nhận thu chi và chạy điểm, ký quỹ 100000U",
+    "link": "https://t.me/+OAjNFlkmhzFmYzg0",
+    "decision": "accept",
+    "reason": "Tiêu đề nêu rõ代收付 và chạy điểm, là hạ tầng trung chuyển tiền bất hợp pháp.",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "payment-processing-abuse"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 33,
+    "title": "银图-熊猫做图王|可测试再购买| 2345-转账 网银 作图",
+    "title_vi": "Công cụ làm hình Panda, chuyển khoản và ngân hàng trực tuyến",
+    "link": "https://t.me/+EBxAlXFFK_BhNDA1",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán công cụ làm hình cho chuyển khoản ngân hàng trực tuyến.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 34,
+    "title": "免押 免押 博彩跑分｛白资收U ｝｛先款后U ｝｛一笔一回｝ /日结5000+",
+    "title_vi": "Miễn cọc chạy điểm cờ bạc, thu U vốn sạch, ứng trước rồi hoàn U",
+    "link": "https://t.me/cai1778",
+    "decision": "accept",
+    "reason": "Tiêu đề rủ rê chạy điểm và thu U, cho thấy mô hình rửa tiền qua tiền mã hóa.",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "mule-recruitment"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 36,
+    "title": "【Ck】银行/消金/网贷/借条/高炮/融担等精准数据",
+    "title_vi": "Dữ liệu chính xác về ngân hàng, tín dụng tiêu dùng, vay online và融担",
+    "link": "https://t.me/ck_fu",
+    "decision": "accept",
+    "reason": "Tiêu đề rao bán dữ liệu nhắm vào ngân hàng và tín dụng, cho thấy môi giới dữ liệu tài chính.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "lead-trading"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 38,
+    "title": "2345看图王【肥猫官方做图软件】网银转账作图",
+    "title_vi": "2345 xem ảnh, công cụ làm hình cho chuyển khoản ngân hàng trực tuyến",
+    "link": "https://t.me/feimao6700",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá công cụ dựng hình chuyển khoản ngân hàng trực tuyến.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 40,
+    "title": "网银转账作图-批图软件-美工P图/身份证/护照/营业执照/公章",
+    "title_vi": "Làm hình chuyển khoản ngân hàng trực tuyến, CMND, hộ chiếu, giấy phép kinh doanh và con dấu",
+    "link": "https://t.me/wangcaiPtu6",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán làm giả chứng từ ngân hàng cùng giấy tờ nhà nước và doanh nghiệp.",
+    "sector_tags": [
+      "banking",
+      "government"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "identity-fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 42,
+    "title": "【巨鲸数据】实时信息流/银行数据/网贷数据/公积金 博彩 车主",
+    "title_vi": "Dữ liệu thời gian thực về ngân hàng, vay online, quỹ nhà ở và chủ xe",
+    "link": "https://t.me/+es8d3Bxw9d1iMmMy",
+    "decision": "accept",
+    "reason": "Tiêu đề rao bán dữ liệu ngân hàng, vay và quỹ nhà ở, phù hợp môi giới dữ liệu tài chính.",
+    "sector_tags": [
+      "banking",
+      "financial",
+      "government"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "lead-trading"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 44,
+    "title": "图册 P图软件 手机银行 生成器 USDT 作图软件 聊天生成 做图 ..",
+    "title_vi": "Album, phần mềm chỉnh ảnh, bộ tạo ngân hàng di động và USDT",
+    "link": "https://t.me/tucen6",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán bộ công cụ tạo chứng từ ngân hàng di động và USDT giả.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 46,
+    "title": "【小八路免费社工库】查档源头/司法/网逃/定位/流水/资源对接",
+    "title_vi": "Kho xã hội công trình miễn phí, tra hồ sơ, tư pháp, truy nã, định vị và sao kê",
+    "link": "https://t.me/baluSgk_bot",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán tra cứu tư pháp và sao kê, là dịch vụ môi giới dữ liệu chính phủ và ngân hàng.",
+    "sector_tags": [
+      "banking",
+      "government"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "doxxing"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0004.json",
+    "item_index": 48,
+    "title": "港股接盘 香港站同台 直接对接香港庄家围标",
+    "title_vi": "Đỡ giá cổ phiếu Hồng Kông, đối接庄家 để围标",
+    "link": "https://t.me/tiktokzui",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá đỡ giá cổ phiếu và phối hợp với nhà cái chứng khoán, cho thấy thao túng thị trường.",
+    "sector_tags": [
+      "securities"
+    ],
+    "crime_signals": [
+      "market-manipulation",
+      "fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 3,
+    "title": "【金蟾数据】源头直出，全行业提取、地区助贷、公积金/dpi/银行消金网..",
+    "title_vi": "Kim Thiềm dữ liệu, trích xuất toàn ngành, hỗ trợ vay theo khu vực, quỹ nhà ở, DPI và tín dụng ngân hàng",
+    "link": "https://t.me/+jSuUB-oouIVlZDUy",
+    "decision": "accept",
+    "reason": "Tiêu đề rao bán dữ liệu cho ngân hàng, tín dụng tiêu dùng và quỹ nhà ở.",
+    "sector_tags": [
+      "banking",
+      "financial",
+      "government"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "lead-trading"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 4,
+    "title": "免押 免押 跑分 ｛白资收U ｝｛我们先款款到回U ｝｛一笔一回｝｛上浮收u｝ /日结5000+ 月入10w+",
+    "title_vi": "Miễn cọc chạy điểm, thu U vốn sạch, ứng trước rồi hoàn U, chốt từng đơn",
+    "link": "https://t.me/laicai1978",
+    "decision": "accept",
+    "reason": "Tiêu đề rủ rê chạy điểm và thu U, phù hợp mô hình rửa tiền qua tiền mã hóa.",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "mule-recruitment"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 5,
+    "title": "收银行卡/公户/个人卡：价高",
+    "title_vi": "Thu mua thẻ ngân hàng, tài khoản doanh nghiệp và thẻ cá nhân giá cao",
+    "link": "https://t.me/ab1688688",
+    "decision": "accept",
+    "reason": "Tiêu đề rao mua thẻ ngân hàng và tài khoản công ty, phù hợp chuỗi tài khoản mule.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "account-trading",
+      "mule-recruitment"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 7,
+    "title": "【巨鲸源头数据】助贷数据/网贷/公积金/银行消金/信息流/车主",
+    "title_vi": "Dữ liệu đầu nguồn cho hỗ trợ vay, vay online, quỹ nhà ở và tín dụng ngân hàng",
+    "link": "https://t.me/+UyslMi74mjAwMTEy",
+    "decision": "accept",
+    "reason": "Tiêu đề rao bán dữ liệu hỗ trợ vay, ngân hàng và quỹ nhà ở.",
+    "sector_tags": [
+      "banking",
+      "financial",
+      "government"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "lead-trading"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 9,
+    "title": "【金蟾数据】助贷/全行业精准源头数据/银行网贷消金隔夜申请/公积金/短..",
+    "title_vi": "Kim Thiềm dữ liệu về vay, ngân hàng, tín dụng tiêu dùng, quỹ nhà ở và đơn qua đêm",
+    "link": "https://t.me/+QuuPj4062jcwOTRi",
+    "decision": "accept",
+    "reason": "Tiêu đề rao bán dữ liệu cho vay, ngân hàng và quỹ nhà ở, phù hợp môi giới dữ liệu tài chính.",
+    "sector_tags": [
+      "banking",
+      "financial",
+      "government"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "lead-trading"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 17,
+    "title": "旺财作图 P图软件 手机银行 生成器 USDT 作图软件 聊天生成 做..",
+    "title_vi": "Wangcai làm hình, ngân hàng di động, bộ tạo và USDT",
+    "link": "https://t.me/wcwc1818",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán công cụ tạo chứng từ ngân hàng di động và giao dịch USDT giả.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "document-forgery",
+      "fake-transfer-proof"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 22,
+    "title": "【如意数据】公积金/贷款/银行/网贷/助贷等精准数据源头订制",
+    "title_vi": "Dữ liệu chính xác về quỹ nhà ở, khoản vay, ngân hàng, vay online và hỗ trợ vay",
+    "link": "https://t.me/+mX8FJk6r9oQ1MzA1",
+    "decision": "accept",
+    "reason": "Tiêu đề rao bán dữ liệu cho khoản vay, ngân hàng và quỹ nhà ở.",
+    "sector_tags": [
+      "banking",
+      "financial",
+      "government"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "lead-trading"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 24,
+    "title": "君安解冻异常/司法银行卡！先解后付！前期0支出️",
+    "title_vi": "Quân An xử lý giải đông thẻ ngân hàng bất thường hoặc bị tư pháp phong tỏa",
+    "link": "https://t.me/+uA5_CWNBTZQyZGM9",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán dịch vụ gỡ phong tỏa tư pháp đối với thẻ ngân hàng.",
+    "sector_tags": [
+      "banking",
+      "government"
+    ],
+    "crime_signals": [
+      "judicial-freeze-bypass",
+      "fraud-enablement"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 27,
+    "title": "预留手机银行卡预留查预留银行卡查卡主",
+    "title_vi": "Tra số điện thoại lưu hồ sơ thẻ ngân hàng và chủ thẻ",
+    "link": "https://t.me/yjcd7",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán tra cứu số điện thoại lưu hồ sơ và chủ thẻ ngân hàng.",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "doxxing"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 30,
+    "title": "『佳运支付』EB钱包白资代付承兑对接",
+    "title_vi": "Jiayun Pay, ví EB, đối接代付 và承兑 cho vốn sạch",
+    "link": "https://t.me/skgbaowang01",
+    "decision": "accept",
+    "reason": "Tiêu đề quảng bá ví thanh toán và dịch vụ代付承兑 cho vốn sạch, phù hợp lạm dụng hạ tầng thanh toán.",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "payment-processing-abuse",
+      "money-laundering"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 32,
+    "title": "【金蟾数据】全行业助贷数据提取/银行消金网贷隔夜申请/银行进件/公积金..",
+    "title_vi": "Kim Thiềm dữ liệu về đơn ngân hàng, tín dụng tiêu dùng, vay online,进件 ngân hàng và quỹ nhà ở",
+    "link": "https://t.me/+3Jw0C-ZAGKM2MzVi",
+    "decision": "accept",
+    "reason": "Tiêu đề rao bán dữ liệu ngân hàng, đơn进件 và quỹ nhà ở.",
+    "sector_tags": [
+      "banking",
+      "financial",
+      "government"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "lead-trading"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 35,
+    "title": "【新币担保公群】出一二道常规料 可 支付宝 微信 卡接 三方链接 代付..",
+    "title_vi": "Nhóm bảo đảm Tân Tệ, bán dữ liệu thường quy, Alipay, WeChat, nhận thẻ, liên kết bên thứ ba và代付",
+    "link": "https://t.me/+zi1piNdAOC80MjA1",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán vật liệu cùng Alipay, WeChat, thẻ nhận và代付, cho thấy hạ tầng gian lận thanh toán.",
+    "sector_tags": [
+      "banking",
+      "financial"
+    ],
+    "crime_signals": [
+      "payment-processing-abuse",
+      "fraud-enablement"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 36,
+    "title": "查户籍】回国必查以免落地成盒-案底、立案、网逃身份】一犯罪记录边控查询..",
+    "title_vi": "Tra hộ tịch, tiền án, truy nã và kiểm soát biên giới",
+    "link": "https://t.me/gmabot?start=k6l1z5x8",
+    "decision": "accept",
+    "reason": "Tiêu đề chào bán tra cứu hồ sơ hộ tịch và tiền án, là dịch vụ môi giới dữ liệu chính phủ trái phép.",
+    "sector_tags": [
+      "government"
+    ],
+    "crime_signals": [
+      "data-brokering",
+      "doxxing"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0005.json",
+    "item_index": 39,
+    "title": "🈶收款码就能来🔥币安公群上押3万美金🔥0风险高收入🔥小白也能做日赚8000➕🔥2026年官方推荐项目！",
+    "title_vi": "Có mã nhận tiền là có thể tham gia, đặt cọc 3 vạn USD ở nhóm Binance",
+    "link": "https://t.me/+PSHqXj0D-BkyMmQ9",
+    "decision": "accept",
+    "reason": "Tiêu đề rủ rê dùng mã nhận tiền để kiếm thu nhập, phù hợp tuyển người trung chuyển tiền gian lận.",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "mule-recruitment"
+    ],
+    "priority": "medium"
+  }
+]

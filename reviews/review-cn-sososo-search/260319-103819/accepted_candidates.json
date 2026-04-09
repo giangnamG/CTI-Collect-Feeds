@@ -1,0 +1,253 @@
+[
+  {
+    "source_file": "0008.json",
+    "item_index": 35,
+    "title": "⭐️有收款码就可以赚钱了⭐️一单赚400-10000⭐️小白也能日赚10000⭐️单一结新人第一次做单领取288红包🧧",
+    "link": "https://t.me/+WHDsBCnpFU0xMDdl",
+    "decision": "accept",
+    "reason": "标题招募持收款码赚钱，明显指向跑分代收款与洗钱链路。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "payment-fraud",
+      "money-mule",
+      "money-laundering"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0012.json",
+    "item_index": 35,
+    "title": "泰国警方封锁柬泰边境小路 阻断电诈团伙资金流通",
+    "link": "https://t.me/DNY_DSJ/15170",
+    "decision": "accept",
+    "reason": "标题直指电诈团伙资金流通受阻，涉及诈骗资金与金融通道。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "fraud",
+      "money-laundering"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0013.json",
+    "item_index": 21,
+    "title": "#全网曝光 诈骗分子冒充飞机钱包 Wallet",
+    "link": "https://t.me/jpz798/5265",
+    "decision": "accept",
+    "reason": "标题称诈骗分子冒充钱包服务，属于加密钱包诈骗与身份冒充。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "impersonation",
+      "phishing",
+      "wallet-fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0014.json",
+    "item_index": 39,
+    "title": "免费社工库 ：专业机主机器人 ：手机号出身份证：机构律师同行必备",
+    "link": "https://t.me/JZSGKBOT",
+    "decision": "accept",
+    "reason": "标题售卖社工库查档与身份证信息，涉及身份数据滥用。",
+    "sector_tags": [
+      "government",
+      "financial"
+    ],
+    "crime_signals": [
+      "doxing",
+      "data-broker",
+      "identity-abuse"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0017.json",
+    "item_index": 7,
+    "title": "AI加速亚洲涉赌犯罪扩张 洗钱诈骗规模失控",
+    "link": "https://t.me/DNY8898/48176",
+    "decision": "accept",
+    "reason": "标题点明涉赌犯罪伴随洗钱诈骗扩张，直接关联金融犯罪链。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "fraud"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0017.json",
+    "item_index": 25,
+    "title": "🟥有收款码就可以赚钱🟪0风险💎一单一结🟧新人送188🧧小白也能日入过万",
+    "link": "https://t.me/+7lms0o7b-Og4N2M1",
+    "decision": "accept",
+    "reason": "标题以收款码赚钱招募人员，典型跑分洗钱或代收款话术。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "payment-fraud",
+      "money-mule",
+      "money-laundering"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0019.json",
+    "item_index": 6,
+    "title": "GCash 诈骗消息现在可通过消息应用程序发送",
+    "link": "https://t.me/flbhuarenquan/5287",
+    "decision": "accept",
+    "reason": "标题显示GCash诈骗消息扩散，指向数字钱包诈骗活动。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "phishing",
+      "wallet-fraud",
+      "fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0019.json",
+    "item_index": 27,
+    "title": "#泰国警方封锁柬泰边境小路 阻断电诈团伙资金流通",
+    "link": "https://t.me/pyzcc/17437",
+    "decision": "accept",
+    "reason": "标题直指电诈团伙资金流通受阻，涉及诈骗资金与金融通道。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "fraud",
+      "money-laundering"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0022.json",
+    "item_index": 4,
+    "title": "🔎🔎🔎【免费社工库入口】社工库🅰️查档机器人🅰️免费社工库机器人🅰️社工机器人🅰️免费社工库🅰️免费查档",
+    "link": "https://t.me/+XQma_8Q8mzdkNzJl",
+    "decision": "accept",
+    "reason": "标题推广免费社工库查档，明显用于身份信息检索与滥用。",
+    "sector_tags": [
+      "government",
+      "financial"
+    ],
+    "crime_signals": [
+      "doxing",
+      "data-broker",
+      "identity-abuse"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0022.json",
+    "item_index": 35,
+    "title": "美国银行成“诈骗帮凶”？背后是柬埔寨电诈黑市",
+    "link": "https://t.me/baoguang821/45963",
+    "decision": "accept",
+    "reason": "标题将银行与电诈黑市并置，指向诈骗洗钱利用银行通道。",
+    "sector_tags": [
+      "banking"
+    ],
+    "crime_signals": [
+      "fraud",
+      "money-laundering"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0023.json",
+    "item_index": 4,
+    "title": "发财苹果ID贷 全网上押超10万美金 要你有一台苹果13以上的手机就可以贷款300-2000",
+    "link": "https://t.me/iddai",
+    "decision": "accept",
+    "reason": "标题以苹果ID贷招徕借款，明显带有账号质押式金融欺诈语义。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "loan-fraud",
+      "identity-abuse"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0025.json",
+    "item_index": 41,
+    "title": "一种全新的混（洗）虚拟货币币方式 #销毁再铸造",
+    "link": "https://t.me/baoguang821/31147",
+    "decision": "accept",
+    "reason": "标题讨论虚拟货币混洗方式，直接对应加密资产洗钱活动。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "money-laundering",
+      "crypto-abuse"
+    ],
+    "priority": "medium"
+  },
+  {
+    "source_file": "0026.json",
+    "item_index": 43,
+    "title": "上海老妇照镜子险被“刷脸”骗380万！",
+    "link": "https://t.me/chutian/2985",
+    "decision": "accept",
+    "reason": "标题描述刷脸骗走巨额资金，指向生物识别冒用型金融诈骗。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "fraud",
+      "identity-abuse",
+      "biometric-fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0027.json",
+    "item_index": 4,
+    "title": "#网友曝光：开元棋牌 虚假提款与身份核实骗局！",
+    "link": "https://t.me/YTDSJ888888/527",
+    "decision": "accept",
+    "reason": "标题点明虚假提款与身份核实骗局，属于平台金融欺诈话术。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "withdrawal-scam",
+      "kyc-fraud",
+      "fraud"
+    ],
+    "priority": "high"
+  },
+  {
+    "source_file": "0027.json",
+    "item_index": 44,
+    "title": "#币圈新闻：高危窃密工具可隐身扫描专攻加密货币钱包",
+    "link": "https://t.me/penpay00/32761",
+    "decision": "accept",
+    "reason": "标题称窃密工具专攻加密货币钱包，属于金融资产窃取恶意工具。",
+    "sector_tags": [
+      "financial"
+    ],
+    "crime_signals": [
+      "malware",
+      "wallet-theft",
+      "credential-theft"
+    ],
+    "priority": "high"
+  }
+]
