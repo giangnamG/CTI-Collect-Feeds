@@ -1,6 +1,6 @@
 ---
 name: skill-create-feed-cti-cn
-description: Review one Telegram message link centered on one specified message, fetch about 20 messages before and 20 after, read Chinese-language screenshots and text with native-level semantic judgment, and decide whether the material supports an in-scope CTI feed for Banking/Financial, Securities, or Government cybercrime. Use when the user invokes `$skill-create-feed-cti-cn` with exactly one Telegram message link argument such as `https://t.me/chat/12345`, and Codex must translate the evidence into Vietnamese, produce short bilingual analysis in Vietnamese and English, reject news-only or commentary-only content, and create a complete CTI feed only when both criminal behavior and criminal form are present.
+description: Review one Telegram message link or one Telegram group/channel link, snapshot the relevant conversation into a local temp folder, read Chinese-language screenshots and text with native-level semantic judgment, and decide whether the material supports an in-scope CTI feed for Banking/Financial, Securities, or Government cybercrime. Use when the user invokes `$skill-create-feed-cti-cn` with exactly one Telegram message link such as `https://t.me/chat/12345` or one group/channel link such as `https://t.me/chatname`, and Codex must translate the evidence into Vietnamese, produce short bilingual analysis in Vietnamese and English, reject news-only or commentary-only content, and create a complete CTI feed only when both criminal behavior and criminal form are present.
 ---
 
 # Create Feed CTI CN
@@ -8,22 +8,29 @@ description: Review one Telegram message link centered on one specified message,
 ## Overview
 
 Use this skill for proactive or advanced threat hunting on Chinese-language Telegram activity.
-Treat the task as evidence review around one target message, not as generic summarization.
+Treat the task as evidence review around one target Telegram link, not as generic summarization.
 By default, accepted feeds must be saved as Markdown files under `Output-CTI-Feeds/`.
+Treat `conversation/` as the local temp staging root for reviewed Telegram evidence.
 
 ## Input Contract
 
 Invoke this skill only in this fixed form:
 
 ```text
-$skill-create-feed-cti-cn <telegram-message-link>
+$skill-create-feed-cti-cn <telegram-link>
 ```
 
 Accept exactly one argument after the skill name.
-That argument must be a Telegram message link in one of these forms:
+That argument must be either a Telegram message link or a Telegram group/channel link.
+
+Accepted message-link forms:
 
 - `https://t.me/<chat>/<message_id>`
 - `https://t.me/c/<internal_id>/<message_id>`
+
+Accepted group/channel-link form:
+
+- `https://t.me/<chat>`
 
 Treat any extra free-text selector, missing link, non-Telegram URL, or malformed Telegram URL as invalid input.
 When the input is invalid, stop immediately and tell the user to use this exact syntax:
@@ -32,9 +39,10 @@ When the input is invalid, stop immediately and tell the user to use this exact 
 $skill-create-feed-cti-cn https://t.me/<chat>/<message_id>
 ```
 
-Also mention that private-style links such as `https://t.me/c/<internal_id>/<message_id>` are acceptable.
+Also mention that private-style message links such as `https://t.me/c/<internal_id>/<message_id>` are acceptable, and that group/channel links such as `https://t.me/<chat>` are also accepted.
 Only after the Telegram link is valid should you use any additional screenshots, image URLs, captions, profile screenshots, or pasted text as supporting evidence.
-Treat the specified message as the center of review and gather roughly 20 messages above plus 20 messages below when Telegram context is accessible.
+For a message-link input, treat the specified message as the center of review and expand the review window to up to 100 surrounding messages.
+For a group/channel-link input, treat the newest message in that chat as the priority anchor and expand upward to the previous 100 messages.
 
 ## Execution Boundaries
 
@@ -49,6 +57,7 @@ Only read:
 - this skill's own reference files when needed
 
 If the material is accepted for feed creation, save the feed only to the fixed folder `Output-CTI-Feeds/`.
+Before analysis, build a local temp conversation snapshot under the fixed folder pattern described in [conversation-cache.md](./references/conversation-cache.md).
 
 ## Workflow
 
@@ -56,22 +65,50 @@ If the material is accepted for feed creation, save the feed only to the fixed f
 
 If the input is a public Telegram message link such as `https://t.me/<chat>/<message_id>`, extract the chat handle and message id directly.
 If the input is a private-style link such as `https://t.me/c/<internal_id>/<message_id>`, derive the numeric chat id as `-100<internal_id>` when needed.
-Use Telegram tools to gather context around the target message.
-Use only `get_message_context` with `context_size=20` as the default evidence source.
-Do not call `get_chat`, `get_history`, or other broader chat inspection tools for this skill's default review flow.
-Do not read messages outside the reviewed target window.
-Treat the target window as the only admissible Telegram text evidence unless the user explicitly supplies extra screenshots or pasted text.
+If the input is a group/channel link such as `https://t.me/<chat>`, use that chat as the source and resolve the newest available message as the anchor message.
+Do not call `get_chat` for default review because it may expose unrelated last-message previews outside the intended evidence set.
+Do not call `get_history` for default review.
+Do not inspect any other chat, unrelated dialog preview, or cross-chat search result.
+
+For message-link input:
+
+- use `get_message_context`
+- request a wide enough context to capture roughly 100 nearby messages
+- after retrieval, trim to a maximum of 100 reviewed messages while preserving the target message and the nearest surrounding evidence
+
+For group/channel-link input:
+
+- use message-listing tools that read only that target chat, such as `list_messages`
+- anchor on the newest available message
+- include that newest message plus up to 100 earlier messages above it
+- keep the reviewed set confined to that one target chat only
+
 If the Telegram link cannot be resolved because the chat is inaccessible, state that limitation clearly and continue with the screenshots or pasted text that are available.
 Do not do any repo exploration before or after these Telegram calls.
 
-### 2. Read the material like a native Chinese speaker
+### 2. Snapshot the reviewed conversation locally before analysis
+
+Before reasoning over the content, save the reviewed conversation into a local temp folder under:
+
+```text
+conversation/<threat_actor>/
+```
+
+Read [conversation-cache.md](./references/conversation-cache.md) and create the snapshot there.
+Save the reviewed messages, any downloaded images, and any downloaded video files from the reviewed message set.
+Persist every reviewed message into the snapshot even when that message has no media attachment.
+After the snapshot is created, treat the local snapshot folder as the primary review source.
+Do not keep expanding Telegram reads beyond the approved reviewed window once the snapshot exists.
+
+### 3. Read the material like a native Chinese speaker
 
 Interpret every Chinese string through native semantics, slang, euphemism, underworld phrasing, marketplace wording, shorthand, and mixed Chinese-English expressions.
 Do not flatten the task into keyword matching.
 Read screenshots structurally. If an image shows chat lines, payment proof, transaction history, an app interface, a fake portal, or account profile metadata, preserve that structure in translation and analysis.
+Review images and videos only if they belong to messages inside the approved reviewed set or were explicitly supplied by the user.
 Do not pull extra profile media, avatars, unrelated gallery images, or other off-target visuals unless the user explicitly attached them as task evidence.
 
-### 3. Apply the scope gate before creating a feed
+### 4. Apply the scope gate before creating a feed
 
 Create a CTI feed only when the evidence shows both:
 
@@ -82,7 +119,7 @@ Read [crime-scope.md](./references/crime-scope.md) before making the accept or r
 Reject if the post is only news, commentary, awareness content, policy reporting, breach reporting, or general discussion without an in-scope criminal offer, request, exchange, brokerage, guarantee-market role, or operational crime activity.
 Reject if the evidence is only a poster, banner, flyer, scoreboard, results board, or promotional image that does not itself show enough in-scope criminal behavior plus criminal form.
 
-### 4. Translate and analyze first
+### 5. Translate and analyze first
 
 Before drafting the CTI feed, produce these sections:
 
@@ -111,7 +148,7 @@ For analysis:
 - State which target organization type or target market is implicated.
 - Keep one Vietnamese version and one English version with the same meaning.
 
-### 5. Build the feed only if the scope gate passes
+### 6. Build the feed only if the scope gate passes
 
 If the material does not satisfy both criminal behavior and criminal form, stop after the translation and bilingual analysis and state that no CTI feed should be created.
 If the scope gate passes, build the CTI feed using [feed-output.md](./references/feed-output.md).
@@ -142,10 +179,12 @@ Choose the 5 links that best support the feed narrative, such as sale offers, br
 - Prefer evidence-based interpretation over imaginative escalation.
 - Do not confuse a criminal sale or brokerage post with a news report about crime.
 - Do not infer a target bank, country, or actor name unless the evidence supports it.
-- Do not accept alternate invocation formats; require exactly `$skill-create-feed-cti-cn <telegram-message-link>`.
+- Do not accept alternate invocation formats; require exactly `$skill-create-feed-cti-cn <telegram-link>`.
 - Do not run `git status`, `rg --files`, inspect `batches/`, or search the workspace for feed schemas.
-- Do not read any Telegram messages outside the target context window centered on the input message.
+- Do not read any Telegram messages outside the approved reviewed window.
+- Do not read any Telegram chat other than the one directly identified by the input link.
 - Do not use unrelated last-message previews, chat-wide history, profile chatter, or off-target media as evidence.
+- Once the local conversation snapshot is created, review from `conversation/<threat_actor>/` instead of continuing to browse the live chat unnecessarily.
 - If the actor identity is unclear, still use the strongest observable handle, username, group, channel, or vendor name.
 - Keep Vietnamese and English descriptions aligned in meaning.
 - Build the glossary only from raw terms that actually appear in the evidence.

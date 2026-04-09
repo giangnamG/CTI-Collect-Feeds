@@ -1,7 +1,7 @@
 interface:
   display_name: "Create Feed CTI CN"
-  short_description: "Turn Chinese Telegram chat context into bilingual CTI feeds."
-  default_prompt: "Use $skill-create-feed-cti-cn https://t.me/<chat>/<message_id> to review one Telegram message with about 20 messages before and 20 after, and create a bilingual CTI feed only when the evidence is in scope."
+  short_description: "Review a Chinese Telegram message or group link, snapshot up to 100 messages locally, and create a bilingual CTI feed only when the evidence is in scope."
+  default_prompt: "Use $skill-create-feed-cti-cn with either a Telegram message link such as https://t.me/<chat>/<message_id> or a Telegram group link such as https://t.me/<chat>. Build a local conversation/<threat_actor>/ snapshot, review up to 100 target-chat messages, and create a bilingual CTI feed only when the evidence clearly passes scope."
 dependencies:
   tools:
     - type: "mcp"

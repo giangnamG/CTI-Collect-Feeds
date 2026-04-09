@@ -14,6 +14,7 @@ Include:
 - Account or handle display name translation if present
 - Caption or post translation in order
 - Chat-context translation in order
+- Video or image notes from files staged inside the local conversation snapshot when such media belongs to the approved reviewed window
 - Structured translation for screenshots that show payment proof, app UI, profile cards, or transaction history
 
 Use explicit subheaders so the translation section is readable.
@@ -161,7 +162,7 @@ Do not add unsupported campaign claims or victim claims.
 ### Screenshot Evidence
 
 List each screenshot separately.
-Tie each line to a concrete link or image reference when available.
+Tie each line to a concrete message link, image reference, or local snapshot media path when available.
 Describe only what the image actually evidences.
 
 ### Glossary
