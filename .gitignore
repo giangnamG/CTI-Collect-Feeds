@@ -15,9 +15,10 @@ logs/review-cn-sososo-search_logs/*
 .vscode/
 
 skills/review-sector-cybercrime-cn-titles/_tmp_tests/
-test/
+tests
 tmp/
 
 reviews/review-cn-sososo-search/*
 !reviews/review-cn-sososo-search/.keep
 
+!telegram-mcp/.env
